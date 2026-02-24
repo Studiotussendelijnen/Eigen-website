@@ -397,4 +397,73 @@
     bottom: 0; right: 0;
     border-width: 0 2px 2px 0;
   }
+
+  /* ===== HUD / Hero animations ===== */
+
+  @keyframes hudRotateSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes hudRotateReverse {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+  }
+
+  @keyframes hudGlow {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.06); }
+  }
+
+  @keyframes hudScan {
+    0% { top: 0%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+
+  /* Particle float variants */
+  @keyframes heroFloat0 {
+    0%, 100% { transform: translate(0px, 0px); }
+    33% { transform: translate(4px, -8px); }
+    66% { transform: translate(-3px, -4px); }
+  }
+
+  @keyframes heroFloat1 {
+    0%, 100% { transform: translate(0px, 0px); }
+    33% { transform: translate(-5px, -10px); }
+    66% { transform: translate(3px, -5px); }
+  }
+
+  @keyframes heroFloat2 {
+    0%, 100% { transform: translate(0px, 0px); }
+    33% { transform: translate(6px, -6px); }
+    66% { transform: translate(-4px, -12px); }
+  }
+
+  @keyframes heroFloat3 {
+    0%, 100% { transform: translate(0px, 0px); }
+    33% { transform: translate(-3px, -9px); }
+    66% { transform: translate(5px, -3px); }
+  }
+
+  /* Hero grid drift animation */
+  .hero-grid-layer {
+    animation: gridDrift 20s ease-in-out infinite;
+  }
+
+  @keyframes gridDrift {
+    0%, 100% { background-position: 0px 0px; }
+    50% { background-position: 12px 8px; }
+  }
+
+  /* Ambient glow pulse */
+  .hero-ambient-glow {
+    animation: ambientPulse 5s ease-in-out infinite;
+  }
+
+  @keyframes ambientPulse {
+    0%, 100% { opacity: 0.7; transform: translate(0, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(0, -50%) scale(1.08); }
+  }
 }
