@@ -5,6 +5,7 @@
 
 import { Mail, ArrowRight, CheckCircle } from "lucide-react";
 import AnimateIn from "./AnimateIn";
+import { Link } from "wouter";
 
 export default function CTASection() {
   return (
@@ -58,9 +59,9 @@ export default function CTASection() {
 
         <AnimateIn direction="up" delay={300}>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-            <a href="mailto:hallo@tussendelijnen.nl" className="btn-primary-cyan text-sm">
+            <Link href="/contact" className="btn-primary-cyan text-sm">
               Trek de eerste lijn <ArrowRight size={16} />
-            </a>
+            </Link>
             <a href="mailto:hallo@tussendelijnen.nl" className="btn-outline-dashed text-sm">
               <Mail size={16} /> hallo@tussendelijnen.nl
             </a>

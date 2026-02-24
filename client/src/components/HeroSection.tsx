@@ -8,6 +8,7 @@
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import TypewriterCycler from "./TypewriterCycler";
+import { Link } from "wouter";
 
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
@@ -98,20 +99,12 @@ export default function HeroSection() {
                 transition: "opacity 0.8s ease 0.8s, transform 0.8s ease 0.8s",
               }}
             >
-              <a
-                href="#contact"
-                onClick={(e) => { e.preventDefault(); handleScroll("#contact"); }}
-                className="btn-primary-cyan"
-              >
+              <Link href="/contact" className="btn-primary-cyan">
                 Start je project <ArrowRight size={16} />
-              </a>
-              <a
-                href="#diensten"
-                onClick={(e) => { e.preventDefault(); handleScroll("#diensten"); }}
-                className="btn-outline-dashed"
-              >
+              </Link>
+              <Link href="/diensten" className="btn-outline-dashed">
                 Bekijk ons werk
-              </a>
+              </Link>
             </div>
           </div>
 

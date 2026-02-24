@@ -1,15 +1,18 @@
 /**
  * Navbar - Dark cyberpunk creative studio
  * Fixed top navbar with dashed border nav links and cyan CTA button
- * Logo: "TUSSEN DE LIJNEN" in white/cyan on dark background
+ * Logo: real Tussen de Lijnen logo image
+ * Navigation: uses wouter Link for page routing
  */
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "wouter";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [location] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -17,18 +20,22 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location]);
+
   const navLinks = [
-    { label: "Home", href: "#home" },
-    { label: "Diensten", href: "#diensten" },
-    { label: "Over ons", href: "#over-ons" },
-    { label: "Portfolio", href: "#portfolio" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/" },
+    { label: "Diensten", href: "/diensten" },
+    { label: "Over ons", href: "/over-ons" },
+    { label: "Portfolio", href: "/portfolio" },
+    { label: "Contact", href: "/contact" },
   ];
 
-  const handleNavClick = (href: string) => {
-    setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+  const isActive = (href: string) => {
+    if (href === "/") return location === "/";
+    return location.startsWith(href);
   };
 
   return (
@@ -44,44 +51,38 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between max-w-7xl">
         {/* Logo */}
-        <a
-          href="#home"
-          onClick={(e) => { e.preventDefault(); handleNavClick("#home"); }}
-          className="flex items-center gap-0 group"
-        >
+        <Link href="/" className="flex items-center gap-0 group">
           <img
             src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png"
             alt="Tussen de Lijnen"
             style={{ height: "44px", width: "auto", objectFit: "contain" }}
           />
-        </a>
+        </Link>
 
         {/* Desktop Nav Links */}
         <div className="hidden md:flex items-center">
           <div className="nav-dashed">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
-                onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                className="text-white/80 hover:text-white text-sm font-medium transition-colors duration-200 hover:text-cyan-accent"
-                style={{ fontSize: "0.875rem" }}
+                className="text-sm font-medium transition-colors duration-200"
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  color: isActive(link.href) ? "oklch(0.78 0.18 185)" : "oklch(1 0 0 / 70%)",
+                }}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
 
         {/* CTA Button */}
         <div className="hidden md:flex items-center">
-          <a
-            href="#contact"
-            onClick={(e) => { e.preventDefault(); handleNavClick("#contact"); }}
-            className="btn-primary-cyan text-sm"
-          >
+          <Link href="/contact" className="btn-primary-cyan text-sm">
             Start project
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -104,22 +105,21 @@ export default function Navbar() {
         >
           <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
-                onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                className="text-white/80 hover:text-white text-sm font-medium py-2 border-b border-white/5"
+                className="text-sm font-medium py-2 border-b border-white/5 transition-colors"
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  color: isActive(link.href) ? "oklch(0.78 0.18 185)" : "oklch(1 0 0 / 70%)",
+                }}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
-            <a
-              href="#contact"
-              onClick={(e) => { e.preventDefault(); handleNavClick("#contact"); }}
-              className="btn-primary-cyan text-sm self-start mt-2"
-            >
+            <Link href="/contact" className="btn-primary-cyan text-sm self-start mt-2">
               Start project
-            </a>
+            </Link>
           </div>
         </div>
       )}

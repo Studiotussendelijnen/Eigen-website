@@ -9,9 +9,10 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Infinity } from "lucide-react";
 import AnimateIn from "./AnimateIn";
+import { Link } from "wouter";
 
-const RENE_PHOTO = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/ZfOBYpgCbmBdDMWi.jpg";
-const BO_PHOTO = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/WRTchUqGuVcdBqxW.jpg";
+const RENE_PHOTO = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/hkyIUewDbXDKWFPV.jpg";
+const BO_PHOTO = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/sipECXzYhiXBHkDL.jpg";
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -220,13 +221,9 @@ export default function AboutSection() {
         {/* CTA */}
         <AnimateIn direction="up" delay={200}>
           <div className="flex justify-center">
-            <a
-              href="#werkproces"
-              onClick={(e) => { e.preventDefault(); handleScroll("#werkproces"); }}
-              className="btn-outline-dashed"
-            >
+            <Link href="/over-ons" className="btn-outline-dashed">
               Leer ons beter kennen <ArrowRight size={16} />
-            </a>
+            </Link>
           </div>
         </AnimateIn>
       </div>

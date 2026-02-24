@@ -1,21 +1,19 @@
 /**
  * Footer - Dark cyberpunk creative studio
  * Logo, tagline, navigation links, contact info, copyright
+ * Uses wouter Link for page routing
  */
+
+import { Link } from "wouter";
 
 export default function Footer() {
   const navLinks = [
-    { label: "Home", href: "#home" },
-    { label: "Diensten", href: "#diensten" },
-    { label: "Over ons", href: "#over-ons" },
-    { label: "Portfolio", href: "#portfolio" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/" },
+    { label: "Diensten", href: "/diensten" },
+    { label: "Over ons", href: "/over-ons" },
+    { label: "Portfolio", href: "/portfolio" },
+    { label: "Contact", href: "/contact" },
   ];
-
-  const handleNavClick = (href: string) => {
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <footer
@@ -30,11 +28,13 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="mb-4">
-              <img
-                src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png"
-                alt="Tussen de Lijnen"
-                style={{ height: "52px", width: "auto", objectFit: "contain" }}
-              />
+              <Link href="/">
+                <img
+                  src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png"
+                  alt="Tussen de Lijnen"
+                  style={{ height: "52px", width: "auto", objectFit: "contain" }}
+                />
+              </Link>
             </div>
             <p className="text-white/40 text-xs leading-relaxed max-w-xs" style={{ fontFamily: "Inter, sans-serif" }}>
               Van idee naar impact. Wij helpen ondernemers hun verhaal visueel te vertellen.
@@ -52,14 +52,13 @@ export default function Footer() {
             <ul className="space-y-2">
               {navLinks.map((link) => (
                 <li key={link.label}>
-                  <a
+                  <Link
                     href={link.href}
-                    onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
                     className="text-white/40 hover:text-white text-sm transition-colors duration-200"
                     style={{ fontFamily: "Inter, sans-serif" }}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -75,7 +74,7 @@ export default function Footer() {
             </h4>
             <a
               href="mailto:hallo@tussendelijnen.nl"
-              className="text-white/40 hover:text-white text-sm transition-colors duration-200"
+              className="text-sm transition-colors duration-200"
               style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.78 0.18 185)" }}
             >
               hallo@tussendelijnen.nl

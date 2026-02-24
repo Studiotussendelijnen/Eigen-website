@@ -5,12 +5,21 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import Diensten from "./pages/Diensten";
+import OverOns from "./pages/OverOns";
+import Portfolio from "./pages/Portfolio";
+import Contact from "./pages/Contact";
 
 function Router() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/diensten"} component={Diensten} />
+      <Route path={"/over-ons"} component={OverOns} />
+      <Route path={"/portfolio"} component={Portfolio} />
+      <Route path={"/contact"} component={Contact} />
       <Route path={"/404"} component={NotFound} />
+      {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>
   );
@@ -19,7 +28,9 @@ function Router() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="dark">
+      <ThemeProvider
+        defaultTheme="dark"
+      >
         <TooltipProvider>
           <Toaster />
           <Router />
