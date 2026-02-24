@@ -1,41 +1,18 @@
 /**
  * ServicesSection - Dark cyberpunk creative studio
  * "ONZE DIENSTEN" with large PASSIE watermark, horizontal scrolling service cards
+ * Scroll-triggered animations on all elements
  */
 
 import { ArrowRight, Palette, Image, Share2, Monitor, Printer } from "lucide-react";
+import AnimateIn from "./AnimateIn";
 
 const services = [
-  {
-    number: "01",
-    title: "BRANDING",
-    description: "Logo's en huisstijlen die je merk laten opvallen.",
-    icon: Palette,
-  },
-  {
-    number: "02",
-    title: "GRAFISCH ONTWERP",
-    description: "Visitekaartjes, flyers en alles daartussen.",
-    icon: Image,
-  },
-  {
-    number: "03",
-    title: "SOCIAL MEDIA",
-    description: "Content die het scrollen stopt.",
-    icon: Share2,
-  },
-  {
-    number: "04",
-    title: "WEBSITES",
-    description: "Moderne sites die bezoekers omzetten in klanten.",
-    icon: Monitor,
-  },
-  {
-    number: "05",
-    title: "DRUKWERK",
-    description: "Posters, brochures en tastbaar materiaal.",
-    icon: Printer,
-  },
+  { number: "01", title: "BRANDING", description: "Logo's en huisstijlen die je merk laten opvallen.", icon: Palette },
+  { number: "02", title: "GRAFISCH ONTWERP", description: "Visitekaartjes, flyers en alles daartussen.", icon: Image },
+  { number: "03", title: "SOCIAL MEDIA", description: "Content die het scrollen stopt.", icon: Share2 },
+  { number: "04", title: "WEBSITES", description: "Moderne sites die bezoekers omzetten in klanten.", icon: Monitor },
+  { number: "05", title: "DRUKWERK", description: "Posters, brochures en tastbaar materiaal.", icon: Printer },
 ];
 
 export default function ServicesSection() {
@@ -62,7 +39,9 @@ export default function ServicesSection() {
         {/* Section header */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-12">
           <div className="relative">
-            <span className="tag-badge mb-4 inline-block">Wat we doen</span>
+            <AnimateIn direction="up" delay={0}>
+              <span className="tag-badge mb-4 inline-block">Wat we doen</span>
+            </AnimateIn>
             {/* Watermark */}
             <div
               className="watermark-text absolute select-none"
@@ -78,14 +57,18 @@ export default function ServicesSection() {
             >
               PASSIE
             </div>
-            <h2 className="font-display text-white relative z-10" style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}>
-              ONZE{" "}
-              <span style={{ color: "oklch(0.78 0.18 185)" }}>DIENSTEN</span>
-            </h2>
+            <AnimateIn direction="up" delay={100}>
+              <h2 className="font-display text-white relative z-10" style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}>
+                ONZE{" "}
+                <span style={{ color: "oklch(0.78 0.18 185)" }}>DIENSTEN</span>
+              </h2>
+            </AnimateIn>
           </div>
-          <p className="text-white/50 text-sm leading-relaxed max-w-xs lg:max-w-sm lg:text-right mt-4 lg:mt-12" style={{ fontFamily: "Inter, sans-serif" }}>
-            Van concept tot uitvoering. Wij brengen jouw visie tot leven met creativiteit en vakmanschap.
-          </p>
+          <AnimateIn direction="up" delay={200}>
+            <p className="text-white/50 text-sm leading-relaxed max-w-xs lg:max-w-sm lg:text-right mt-4 lg:mt-12" style={{ fontFamily: "Inter, sans-serif" }}>
+              Van concept tot uitvoering. Wij brengen jouw visie tot leven met creativiteit en vakmanschap.
+            </p>
+          </AnimateIn>
         </div>
 
         {/* Horizontal scrolling cards */}
@@ -93,62 +76,58 @@ export default function ServicesSection() {
           className="flex gap-4 overflow-x-auto pb-4 -mx-6 px-6"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {services.map((service) => {
+          {services.map((service, idx) => {
             const Icon = service.icon;
             return (
-              <div
+              <AnimateIn
                 key={service.number}
-                className="service-card flex-shrink-0"
-                style={{ width: "210px", minWidth: "210px" }}
+                direction="up"
+                delay={idx * 100}
+                style={{ flexShrink: 0 }}
               >
-                {/* Icon */}
                 <div
-                  className="mb-4 flex items-center justify-center rounded-lg"
-                  style={{
-                    width: "48px",
-                    height: "48px",
-                    background: "oklch(0.78 0.18 185 / 15%)",
-                    border: "1px solid oklch(0.78 0.18 185 / 30%)",
-                  }}
+                  className="service-card"
+                  style={{ width: "210px", minWidth: "210px" }}
                 >
-                  <Icon size={22} style={{ color: "oklch(0.78 0.18 185)" }} />
+                  {/* Icon */}
+                  <div
+                    className="mb-4 flex items-center justify-center rounded-lg"
+                    style={{
+                      width: "48px",
+                      height: "48px",
+                      background: "oklch(0.78 0.18 185 / 15%)",
+                      border: "1px solid oklch(0.78 0.18 185 / 30%)",
+                    }}
+                  >
+                    <Icon size={22} style={{ color: "oklch(0.78 0.18 185)" }} />
+                  </div>
+                  <div className="font-display mb-2" style={{ fontSize: "0.75rem", color: "oklch(0.78 0.18 185)", letterSpacing: "0.1em" }}>
+                    {service.number}
+                  </div>
+                  <h3 className="font-display text-white mb-2" style={{ fontSize: "1.05rem", letterSpacing: "0.05em" }}>
+                    {service.title}
+                  </h3>
+                  <p className="text-white/50 text-xs leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
+                    {service.description}
+                  </p>
                 </div>
-
-                {/* Number */}
-                <div
-                  className="font-display mb-2"
-                  style={{ fontSize: "0.75rem", color: "oklch(0.78 0.18 185)", letterSpacing: "0.1em" }}
-                >
-                  {service.number}
-                </div>
-
-                {/* Title */}
-                <h3
-                  className="font-display text-white mb-2"
-                  style={{ fontSize: "1.05rem", letterSpacing: "0.05em" }}
-                >
-                  {service.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-white/50 text-xs leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
-                  {service.description}
-                </p>
-              </div>
+              </AnimateIn>
             );
           })}
         </div>
 
         {/* CTA */}
-        <div className="mt-10 flex justify-center">
-          <a
-            href="#contact"
-            onClick={(e) => { e.preventDefault(); handleScroll("#contact"); }}
-            className="btn-outline-dashed"
-          >
-            Bekijk alle diensten <ArrowRight size={16} />
-          </a>
-        </div>
+        <AnimateIn direction="up" delay={300}>
+          <div className="mt-10 flex justify-center">
+            <a
+              href="#contact"
+              onClick={(e) => { e.preventDefault(); handleScroll("#contact"); }}
+              className="btn-outline-dashed"
+            >
+              Bekijk alle diensten <ArrowRight size={16} />
+            </a>
+          </div>
+        </AnimateIn>
       </div>
     </section>
   );

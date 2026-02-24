@@ -29,20 +29,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-8">
           {/* Brand */}
           <div>
-            <div
-              className="inline-block mb-4"
-              style={{
-                border: "1.5px dashed oklch(0.78 0.18 185 / 70%)",
-                padding: "6px 10px",
-                borderRadius: "4px",
-              }}
-            >
-              <div className="font-display text-white leading-none" style={{ fontSize: "13px", letterSpacing: "0.05em" }}>
-                TUSSEN
-              </div>
-              <div className="font-display leading-none" style={{ fontSize: "13px", letterSpacing: "0.05em", color: "oklch(0.78 0.18 185)" }}>
-                DE LIJNEN
-              </div>
+            <div className="mb-4">
+              <img
+                src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png"
+                alt="Tussen de Lijnen"
+                style={{ height: "52px", width: "auto", objectFit: "contain" }}
+              />
             </div>
             <p className="text-white/40 text-xs leading-relaxed max-w-xs" style={{ fontFamily: "Inter, sans-serif" }}>
               Van idee naar impact. Wij helpen ondernemers hun verhaal visueel te vertellen.

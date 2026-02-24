@@ -49,21 +49,11 @@ export default function Navbar() {
           onClick={(e) => { e.preventDefault(); handleNavClick("#home"); }}
           className="flex items-center gap-0 group"
         >
-          <div
-            className="relative"
-            style={{
-              border: "1.5px dashed oklch(0.78 0.18 185 / 70%)",
-              padding: "6px 10px",
-              borderRadius: "4px",
-            }}
-          >
-            <div className="font-display text-white leading-none" style={{ fontSize: "13px", letterSpacing: "0.05em" }}>
-              TUSSEN
-            </div>
-            <div className="font-display leading-none" style={{ fontSize: "13px", letterSpacing: "0.05em", color: "oklch(0.78 0.18 185)" }}>
-              DE LIJNEN
-            </div>
-          </div>
+          <img
+            src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png"
+            alt="Tussen de Lijnen"
+            style={{ height: "44px", width: "auto", objectFit: "contain" }}
+          />
         </a>
 
         {/* Desktop Nav Links */}
