@@ -252,9 +252,9 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right: HUD logo circle */}
+          {/* Right: HUD logo circle — hidden on mobile, visible on desktop/laptop only */}
           <div
-            className="flex justify-center lg:justify-end relative order-last lg:order-last"
+            className="hidden lg:flex justify-end relative order-last lg:order-last"
             style={{
               opacity: mounted ? 1 : 0,
               transition: "opacity 1.2s ease 0.4s",
