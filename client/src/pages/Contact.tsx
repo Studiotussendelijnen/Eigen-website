@@ -1,7 +1,7 @@
 /**
  * Contact page - Contact form and info
  * Dark cyberpunk style: split layout, form on right, info on left
- * Uses Web3Forms for instant email delivery (no activation needed)
+ * Uses Formspree for email delivery
  */
 
 import { useState } from "react";
@@ -11,9 +11,6 @@ import AnimateIn from "@/components/AnimateIn";
 import { Mail, Clock, Send, MapPin } from "lucide-react";
 import { toast } from "sonner";
 
-// Web3Forms access key - public key for client-side form submission
-const WEB3FORMS_ACCESS_KEY = "f3c6c2d5-a1e0-4c8f-9b2e-7d4f8c1a3e9b";
-
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", service: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
@@ -22,30 +19,23 @@ export default function Contact() {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("https://formspree.io/f/xqednavo", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
           name: form.name,
           email: form.email,
           service: form.service || "Niet opgegeven",
           message: form.message,
-          subject: `Nieuw contactbericht van ${form.name}`,
-          from_name: "Tussen de Lijnen",
-          reply_to: form.email,
         }),
       });
-      
-      const data = await res.json();
-      
-      if (data.success) {
+      if (res.ok) {
         toast.success("Bericht verstuurd! We nemen binnen 24 uur contact op.");
         setForm({ name: "", email: "", service: "", message: "" });
       } else {
-        toast.error("Er ging iets mis. Probeer het later opnieuw.");
+        toast.error("Er ging iets mis. Stuur ons een e-mail via hallo@studiotussendelijnen.nl");
       }
-    } catch (error) {
+    } catch {
       toast.error("Geen verbinding. Probeer het later opnieuw.");
     } finally {
       setSubmitting(false);
