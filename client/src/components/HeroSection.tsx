@@ -8,6 +8,7 @@
  * Floating particles: dots, squares, outlines with slow random motion
  * Mouse parallax: particles shift subtly with mouse position
  * Typewriter cycler: IMPACT → RESULTAAT → CONVERSIE
+ * Small logo inline with typewriter text on mobile only
  * CDN assets:
  *   Logo: https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png
  */
@@ -205,17 +206,90 @@ export default function HeroSection() {
               >
                 NAAR
               </h1>
-              <h1
-                className="font-display mb-6"
-                style={{
-                  fontSize: "clamp(3rem, 8vw, 6rem)",
-                  lineHeight: 1.0,
-                  color: "oklch(0.78 0.18 185)",
-                  textShadow: "0 0 40px oklch(0.78 0.18 185 / 0.5)",
-                }}
-              >
-                <TypewriterCycler />
-              </h1>
+              {/* Flex row: typewriter text + small logo on mobile only */}
+              <div className="flex items-center gap-2 md:gap-0 mb-6">
+                <h1
+                  className="font-display"
+                  style={{
+                    fontSize: "clamp(3rem, 8vw, 6rem)",
+                    lineHeight: 1.0,
+                    color: "oklch(0.78 0.18 185)",
+                    textShadow: "0 0 40px oklch(0.78 0.18 185 / 0.5)",
+                  }}
+                >
+                  <TypewriterCycler />
+                </h1>
+                {/* Small HUD logo on mobile only */}
+                <div
+                  className="md:hidden flex-shrink-0"
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    opacity: mounted ? 1 : 0,
+                    transition: "opacity 1.2s ease 0.4s",
+                  }}
+                >
+                  <div className="relative" style={{ width: "100%", height: "100%" }}>
+                    {/* Ambient glow */}
+                    <div
+                      className="absolute rounded-full"
+                      style={{
+                        inset: "-30%",
+                        background: "radial-gradient(circle, oklch(0.78 0.18 185 / 0.18) 0%, transparent 65%)",
+                        filter: "blur(20px)",
+                        animation: "hudGlow 4s ease-in-out infinite",
+                      }}
+                    />
+                    {/* Outer ring */}
+                    <div
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        border: "1px solid oklch(0.78 0.18 185 / 0.20)",
+                        animation: "hudRotateSlow 40s linear infinite",
+                      }}
+                    />
+                    {/* Middle ring */}
+                    <div
+                      className="absolute rounded-full"
+                      style={{
+                        inset: "6%",
+                        border: "1px solid oklch(0.78 0.18 185 / 0.30)",
+                        animation: "hudRotateReverse 28s linear infinite",
+                      }}
+                    />
+                    {/* Inner ring */}
+                    <div
+                      className="absolute rounded-full"
+                      style={{
+                        inset: "12%",
+                        border: "1.5px solid oklch(0.78 0.18 185 / 0.18)",
+                        animation: "hudRotateSlow 55s linear infinite reverse",
+                      }}
+                    />
+                    {/* Logo image */}
+                    <div
+                      className="absolute overflow-hidden flex items-center justify-center"
+                      style={{
+                        inset: "12%",
+                        borderRadius: "50%",
+                        background: "radial-gradient(circle, oklch(0.16 0.08 200 / 0.7) 0%, oklch(0.09 0.03 210 / 0.9) 100%)",
+                        border: "1px solid oklch(0.78 0.18 185 / 0.15)",
+                      }}
+                    >
+                      <img
+                        src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png"
+                        alt="Tussen de Lijnen"
+                        style={{
+                          width: "85%",
+                          height: "85%",
+                          objectFit: "contain",
+                          filter: "drop-shadow(0 0 30px oklch(0.78 0.18 185 / 0.7))",
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Subtext */}
