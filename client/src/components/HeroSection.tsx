@@ -170,12 +170,12 @@ export default function HeroSection() {
 
       {/* ===== Main content ===== */}
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center min-h-screen py-28 lg:py-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center min-h-screen py-28 md:py-32">
 
           {/* Left: Text content */}
           <div>
-            {/* Mobile: logo small next to badge row */}
-            <div className="flex items-center gap-4 mb-6 lg:hidden"
+            {/* Mobile: logo small next to badge row — hidden on md+ */}
+            <div className="flex items-center gap-4 mb-6 md:hidden"
               style={{
                 opacity: mounted ? 1 : 0,
                 transition: "opacity 0.7s ease 0.1s",
@@ -195,9 +195,9 @@ export default function HeroSection() {
                 </div>
               </div>
             </div>
-            {/* Badge — hidden on mobile (shown in mobile row above), visible on lg+ */}
+            {/* Badge — hidden on mobile (shown in mobile row above), visible on md+ */}
             <div
-              className="hidden lg:block"
+              className="hidden md:block"
               style={{
                 opacity: mounted ? 1 : 0,
                 transform: mounted ? "translateY(0)" : "translateY(-16px)",
@@ -274,15 +274,15 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right: HUD logo circle — hidden on mobile, visible on desktop/laptop only */}
+          {/* Right: HUD logo circle — hidden on mobile, visible on tablet and desktop (md+) */}
           <div
-            className="hidden lg:flex justify-end relative order-last lg:order-last"
+            className="hidden md:flex justify-end relative order-last md:order-last"
             style={{
               opacity: mounted ? 1 : 0,
               transition: "opacity 1.2s ease 0.4s",
             }}
           >
-            <div className="relative" style={{ width: "min(420px, 42vw)", height: "min(420px, 42vw)" }}>
+            <div className="relative" style={{ width: "min(420px, 44vw)", height: "min(420px, 44vw)" }}>
 
               {/* Ambient glow (close, behind logo) */}
               <div
