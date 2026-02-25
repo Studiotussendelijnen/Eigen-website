@@ -34,21 +34,36 @@ export default function AboutSection() {
     return () => observer.disconnect();
   }, []);
 
+  // Eased count-up animation using requestAnimationFrame
   useEffect(() => {
     if (!visible) return;
-    let start = 0;
-    const timer = setInterval(() => {
-      start += 1;
-      setCount(start);
-      if (start >= 2) clearInterval(timer);
-    }, 300);
-    let p = 0;
-    const timer2 = setInterval(() => {
-      p += 5;
-      setPassie(p);
-      if (p >= 100) clearInterval(timer2);
-    }, 50);
-    return () => { clearInterval(timer); clearInterval(timer2); };
+
+    // Count "2" over 1.2s with ease-out
+    const duration1 = 1200;
+    const target1 = 2;
+    const start1 = performance.now();
+    const raf1 = (now: number) => {
+      const elapsed = now - start1;
+      const progress = Math.min(elapsed / duration1, 1);
+      // ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target1));
+      if (progress < 1) requestAnimationFrame(raf1);
+    };
+    requestAnimationFrame(raf1);
+
+    // Count "100%" over 2s with ease-out
+    const duration2 = 2000;
+    const target2 = 100;
+    const start2 = performance.now();
+    const raf2 = (now: number) => {
+      const elapsed = now - start2;
+      const progress = Math.min(elapsed / duration2, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setPassie(Math.round(eased * target2));
+      if (progress < 1) requestAnimationFrame(raf2);
+    };
+    requestAnimationFrame(raf2);
   }, [visible]);
 
   const handleScroll = (href: string) => {
