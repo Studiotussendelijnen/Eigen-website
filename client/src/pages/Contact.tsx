@@ -10,19 +10,39 @@ import AnimateIn from "@/components/AnimateIn";
 import { Mail, Clock, Send, MapPin } from "lucide-react";
 import { toast } from "sonner";
 
+// Formspree endpoint — forwards submissions to hallo@tussendelijnen.nl
+// On first submission Formspree will send a confirmation email to hallo@tussendelijnen.nl — click the link to activate.
+const FORMSPREE_ENDPOINT = "https://formspree.io/hallo@tussendelijnen.nl";
+
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", service: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          naam: form.name,
+          email: form.email,
+          dienst: form.service || "Niet opgegeven",
+          bericht: form.message,
+        }),
+      });
+      if (res.ok) {
+        toast.success("Bericht verstuurd! We nemen binnen 24 uur contact op.");
+        setForm({ name: "", email: "", service: "", message: "" });
+      } else {
+        toast.error("Er ging iets mis. Stuur ons een e-mail via hallo@tussendelijnen.nl");
+      }
+    } catch {
+      toast.error("Geen verbinding. Probeer het later opnieuw.");
+    } finally {
       setSubmitting(false);
-      toast.success("Bericht verstuurd! We nemen binnen 24 uur contact op.");
-      setForm({ name: "", email: "", service: "", message: "" });
-    }, 1200);
+    }
   };
 
   const inputStyle: React.CSSProperties = {

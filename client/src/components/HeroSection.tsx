@@ -254,7 +254,7 @@ export default function HeroSection() {
 
           {/* Right: HUD logo circle */}
           <div
-            className="flex justify-center lg:justify-end relative order-first lg:order-last"
+            className="flex justify-center lg:justify-end relative order-last lg:order-last"
             style={{
               opacity: mounted ? 1 : 0,
               transition: "opacity 1.2s ease 0.4s",
