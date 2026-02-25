@@ -5,6 +5,7 @@
  */
 
 import { Link } from "wouter";
+import { MapPin } from "lucide-react";
 
 export default function Footer() {
   const navLinks = [
@@ -72,13 +73,25 @@ export default function Footer() {
             >
               Contact
             </h4>
-            <a
-              href="mailto:hallo@tussendelijnen.nl"
-              className="text-sm transition-colors duration-200"
-              style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.78 0.18 185)" }}
-            >
-              hallo@tussendelijnen.nl
-            </a>
+            <div className="space-y-3">
+              <a
+                href="mailto:hallo@tussendelijnen.nl"
+                className="block text-sm transition-colors duration-200"
+                style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.78 0.18 185)" }}
+              >
+                hallo@tussendelijnen.nl
+              </a>
+              <div className="flex items-start gap-2">
+                <MapPin size={14} className="mt-0.5 flex-shrink-0" style={{ color: "oklch(0.78 0.18 185 / 60%)" }} />
+                <address
+                  className="not-italic text-sm text-white/40 leading-relaxed"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  Kanaaldijk 2<br />
+                  5768 RE Meijel
+                </address>
+              </div>
+            </div>
           </div>
         </div>
 

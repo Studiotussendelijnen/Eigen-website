@@ -1,7 +1,9 @@
 /**
  * ProcessSection - Dark cyberpunk creative studio
- * "ONS WERKPROCES" with vertical timeline, alternating left-right cards
- * Each card animates in from its side when scrolled into view
+ * "ONS WERKPROCES" with vertical timeline, alternating left-right transparent cards
+ * PROCES watermark spans behind the cards
+ * Central vertical line with cyan timeline dots
+ * No floating decorations, no pagination dots
  */
 
 import { MessageSquare, Lightbulb, Pencil, CheckCircle } from "lucide-react";
@@ -45,39 +47,42 @@ export default function ProcessSection() {
       className="relative py-24 overflow-hidden"
       style={{ background: "oklch(0.09 0.02 240)" }}
     >
-      {/* Floating decorations */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="float-dot animate-pulse-glow" style={{ top: "8%", left: "5%", animationDelay: "0.5s" }} />
-        <div className="diamond-deco animate-float-slow" style={{ top: "20%", right: "4%", opacity: 0.3 }} />
-        <div className="float-dot" style={{ bottom: "15%", right: "8%", opacity: 0.4 }} />
-        <div className="square-deco animate-float" style={{ bottom: "30%", left: "3%", opacity: 0.2 }} />
-        <div className="diamond-deco" style={{ bottom: "10%", left: "10%", opacity: 0.25 }} />
-      </div>
-
       <div className="container mx-auto px-6 max-w-7xl">
         {/* Section header */}
         <AnimateIn direction="up" delay={0}>
-          <div className="text-center mb-16 relative">
-            {/* Watermark */}
-            <div
-              className="watermark-text absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap"
-              style={{ fontSize: "clamp(5rem, 18vw, 14rem)", lineHeight: 1, opacity: 0.04 }}
-            >
-              PROCES
-            </div>
-            <span className="tag-badge mb-4 inline-block relative z-10">Hoe we werken</span>
-            <h2 className="font-display text-white relative z-10" style={{ fontSize: "clamp(2.5rem, 7vw, 5rem)" }}>
+          <div className="text-center mb-16">
+            <span className="tag-badge mb-4 inline-block">Hoe we werken</span>
+            <h2 className="font-display text-white" style={{ fontSize: "clamp(2.5rem, 7vw, 5rem)" }}>
               ONS{" "}
               <span style={{ color: "oklch(0.78 0.18 185)" }}>WERKPROCES</span>
             </h2>
-            <p className="text-white/50 text-sm mt-4 max-w-lg mx-auto leading-relaxed relative z-10" style={{ fontFamily: "Inter, sans-serif" }}>
+            <p className="text-white/50 text-sm mt-4 max-w-lg mx-auto leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
               Van eerste idee tot eindresultaat. Transparant, efficiënt en altijd in overleg.
             </p>
           </div>
         </AnimateIn>
 
-        {/* Timeline */}
+        {/* Timeline container — PROCES watermark behind */}
         <div className="relative max-w-5xl mx-auto">
+
+          {/* PROCES watermark — behind the timeline cards */}
+          <div
+            className="absolute font-display pointer-events-none select-none"
+            style={{
+              fontSize: "clamp(8rem, 22vw, 18rem)",
+              color: "oklch(0.75 0.04 200 / 10%)",
+              lineHeight: 1,
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              whiteSpace: "nowrap",
+              zIndex: 0,
+              letterSpacing: "-0.02em",
+            }}
+          >
+            PROCES
+          </div>
+
           {/* Vertical center line */}
           <div
             className="absolute hidden md:block"
@@ -88,33 +93,52 @@ export default function ProcessSection() {
               width: "1px",
               transform: "translateX(-50%)",
               background: "linear-gradient(to bottom, transparent 0%, oklch(0.78 0.18 185 / 30%) 10%, oklch(0.78 0.18 185 / 30%) 90%, transparent 100%)",
+              zIndex: 1,
             }}
           />
 
-          <div className="space-y-6">
+          <div className="space-y-8 relative" style={{ zIndex: 2 }}>
             {steps.map((step) => {
               const Icon = step.icon;
               const isLeft = step.side === "left";
 
               const CardContent = (
-                <div className="process-card">
+                <div
+                  className="rounded-2xl p-8 transition-all duration-300"
+                  style={{
+                    background: "transparent",
+                    border: "1px solid oklch(0.78 0.18 185 / 20%)",
+                  }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.borderColor = "oklch(0.78 0.18 185 / 50%)";
+                    el.style.boxShadow = "0 8px 32px oklch(0.78 0.18 185 / 10%)";
+                    el.style.background = "oklch(0.12 0.03 220 / 25%)";
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.borderColor = "oklch(0.78 0.18 185 / 20%)";
+                    el.style.boxShadow = "none";
+                    el.style.background = "transparent";
+                  }}
+                >
                   <div className="flex items-center gap-3 mb-4">
                     <div
-                      className="flex items-center justify-center rounded-lg flex-shrink-0"
+                      className="flex items-center justify-center rounded-xl flex-shrink-0"
                       style={{
-                        width: "44px",
-                        height: "44px",
+                        width: "48px",
+                        height: "48px",
                         background: "oklch(0.78 0.18 185 / 15%)",
-                        border: "1px solid oklch(0.78 0.18 185 / 30%)",
+                        border: "1px solid oklch(0.78 0.18 185 / 35%)",
                       }}
                     >
-                      <Icon size={20} style={{ color: "oklch(0.78 0.18 185)" }} />
+                      <Icon size={22} style={{ color: "oklch(0.78 0.18 185)" }} strokeWidth={1.5} />
                     </div>
-                    <span className="font-display" style={{ fontSize: "1.5rem", color: "oklch(0.78 0.18 185 / 50%)" }}>
+                    <span className="font-display" style={{ fontSize: "1.6rem", color: "oklch(0.78 0.18 185 / 50%)" }}>
                       {step.number}
                     </span>
                   </div>
-                  <h3 className="font-display text-white mb-3" style={{ fontSize: "1.4rem", letterSpacing: "0.05em" }}>
+                  <h3 className="font-display text-white mb-3" style={{ fontSize: "1.5rem", letterSpacing: "0.05em" }}>
                     {step.title}
                   </h3>
                   <p className="text-white/50 text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
@@ -125,27 +149,48 @@ export default function ProcessSection() {
 
               return (
                 <div key={step.number} className="relative">
-                  {/* Timeline dot */}
+                  {/* Timeline dot on the center line */}
                   <div
                     className="hidden md:flex absolute items-center justify-center"
-                    style={{ left: "50%", top: "2rem", transform: "translate(-50%, 0)", zIndex: 10 }}
+                    style={{ left: "50%", top: "2.5rem", transform: "translate(-50%, 0)", zIndex: 10 }}
                   >
-                    <div className="timeline-dot" />
+                    {/* Outer glow ring */}
+                    <div
+                      style={{
+                        width: "20px",
+                        height: "20px",
+                        borderRadius: "50%",
+                        border: "1px solid oklch(0.78 0.18 185 / 40%)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: "10px",
+                          height: "10px",
+                          borderRadius: "50%",
+                          background: "oklch(0.78 0.18 185)",
+                          boxShadow: "0 0 8px oklch(0.78 0.18 185 / 80%)",
+                        }}
+                      />
+                    </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
                     {isLeft ? (
                       <>
                         <AnimateIn direction="left" delay={0}>
-                          <div className="md:pr-12">{CardContent}</div>
+                          <div className="md:pr-14">{CardContent}</div>
                         </AnimateIn>
                         <div className="hidden md:block" />
                       </>
                     ) : (
                       <>
-                        <div className="hidden md:block md:pr-12" />
+                        <div className="hidden md:block md:pr-14" />
                         <AnimateIn direction="right" delay={0}>
-                          <div className="md:pl-12">{CardContent}</div>
+                          <div className="md:pl-14">{CardContent}</div>
                         </AnimateIn>
                       </>
                     )}
@@ -153,22 +198,6 @@ export default function ProcessSection() {
                 </div>
               );
             })}
-          </div>
-
-          {/* Bottom pagination dots */}
-          <div className="flex justify-center mt-10 gap-2">
-            {steps.map((_, i) => (
-              <div
-                key={i}
-                className="rounded-full transition-all"
-                style={{
-                  width: i === 0 ? "24px" : "8px",
-                  height: "8px",
-                  background: i === 0 ? "oklch(0.78 0.18 185)" : "oklch(1 0 0 / 20%)",
-                  borderRadius: i === 0 ? "4px" : "50%",
-                }}
-              />
-            ))}
           </div>
         </div>
       </div>

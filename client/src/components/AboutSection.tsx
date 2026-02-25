@@ -78,13 +78,6 @@ export default function AboutSection() {
       className="relative py-24 overflow-hidden"
       style={{ background: "oklch(0.09 0.02 240)" }}
     >
-      {/* Floating decorations */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="float-dot animate-pulse-glow" style={{ top: "10%", right: "8%", animationDelay: "0.5s" }} />
-        <div className="diamond-deco animate-float-slow" style={{ bottom: "20%", right: "5%", opacity: 0.3 }} />
-        <div className="float-dot" style={{ bottom: "40%", left: "3%", opacity: 0.4 }} />
-        <div className="square-deco" style={{ top: "30%", left: "5%", opacity: 0.2 }} />
-      </div>
 
       <div className="container mx-auto px-6 max-w-7xl">
         {/* Section header */}

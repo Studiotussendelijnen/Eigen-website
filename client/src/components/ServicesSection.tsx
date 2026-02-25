@@ -1,12 +1,11 @@
 /**
  * ServicesSection - Dark cyberpunk creative studio
  * - PASSIE watermark spans the full section behind the cards
- * - Cards are semi-transparent so PASSIE is visible through them
- * - Dot-indicator pagination animation on the right side
+ * - Cards are fully transparent (border only) so PASSIE is clearly visible through them
+ * - No side dot decorations
  * - Staggered vertical offset cards matching the reference screenshot
  */
 
-import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Palette, Image, Share2, Monitor, Printer } from "lucide-react";
 import AnimateIn from "./AnimateIn";
 import { Link } from "wouter";
@@ -49,52 +48,21 @@ const services = [
   },
 ];
 
-// Dot indicator that cycles through 4 positions automatically
-function DotIndicator() {
-  const [active, setActive] = useState(0);
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActive((prev) => (prev + 1) % 4);
-    }, 1800);
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="flex items-center gap-2">
-      {[0, 1, 2, 3].map((i) => (
-        <div
-          key={i}
-          style={{
-            width: active === i ? "28px" : "8px",
-            height: "8px",
-            borderRadius: "4px",
-            background: active === i ? "oklch(0.78 0.18 185)" : "oklch(1 0 0 / 25%)",
-            transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
 export default function ServicesSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
   return (
     <section
       id="diensten"
-      ref={sectionRef}
       className="relative overflow-hidden"
       style={{ background: "oklch(0.07 0.02 240)", paddingTop: "6rem", paddingBottom: "10rem" }}
     >
-      {/* PASSIE watermark — full section, very prominent */}
+      {/* PASSIE watermark — full section, very prominent, behind everything */}
       <div
         className="absolute font-display pointer-events-none select-none"
         style={{
           fontSize: "clamp(10rem, 28vw, 22rem)",
-          color: "oklch(0.75 0.04 200 / 12%)",
+          color: "oklch(0.75 0.04 200 / 14%)",
           lineHeight: 1,
-          top: "38%",
+          top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           whiteSpace: "nowrap",
@@ -104,27 +72,6 @@ export default function ServicesSection() {
       >
         PASSIE
       </div>
-
-      {/* Dot indicator — right side, like the reference */}
-      <div
-        className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none"
-        style={{ zIndex: 2 }}
-      >
-        <DotIndicator />
-      </div>
-
-      {/* Small floating dot — left side */}
-      <div
-        className="absolute left-8 top-1/2 pointer-events-none"
-        style={{
-          width: "6px",
-          height: "6px",
-          borderRadius: "50%",
-          background: "oklch(0.78 0.18 185)",
-          opacity: 0.5,
-          zIndex: 2,
-        }}
-      />
 
       <div className="container mx-auto px-6 max-w-7xl relative" style={{ zIndex: 1 }}>
         {/* Header row: title left, description right */}
@@ -153,7 +100,7 @@ export default function ServicesSection() {
           </AnimateIn>
         </div>
 
-        {/* Cards row — semi-transparent so PASSIE shows through */}
+        {/* Cards row — fully transparent so PASSIE shows through clearly */}
         <div
           className="flex flex-col md:flex-row gap-4 items-start"
           style={{ paddingBottom: "80px" }}
@@ -168,11 +115,9 @@ export default function ServicesSection() {
               <div
                 className="rounded-2xl p-6 flex flex-col gap-4 transition-all duration-300"
                 style={{
-                  /* Semi-transparent background so PASSIE watermark shows through */
-                  background: "oklch(0.12 0.03 220 / 65%)",
-                  border: "1px solid oklch(0.78 0.18 185 / 20%)",
-                  backdropFilter: "blur(2px)",
-                  WebkitBackdropFilter: "blur(2px)",
+                  /* Fully transparent — only border visible, PASSIE shows through */
+                  background: "transparent",
+                  border: "1px solid oklch(0.78 0.18 185 / 25%)",
                   marginTop: `${service.offset}px`,
                   minHeight: "220px",
                 }}
@@ -181,14 +126,14 @@ export default function ServicesSection() {
                   el.style.borderColor = "oklch(0.78 0.18 185 / 60%)";
                   el.style.boxShadow = "0 8px 32px oklch(0.78 0.18 185 / 12%)";
                   el.style.transform = "translateY(-6px)";
-                  el.style.background = "oklch(0.14 0.04 220 / 80%)";
+                  el.style.background = "oklch(0.12 0.03 220 / 30%)";
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget as HTMLElement;
-                  el.style.borderColor = "oklch(0.78 0.18 185 / 20%)";
+                  el.style.borderColor = "oklch(0.78 0.18 185 / 25%)";
                   el.style.boxShadow = "none";
                   el.style.transform = "translateY(0)";
-                  el.style.background = "oklch(0.12 0.03 220 / 65%)";
+                  el.style.background = "transparent";
                 }}
               >
                 {/* Icon box */}
