@@ -1,6 +1,7 @@
 /**
  * Portfolio page - Project showcase
  * Dark cyberpunk style: project cards with dashed borders, category tags
+ * Hover animations: subtle scale, lift, and glow effects
  */
 
 import Navbar from "@/components/Navbar";
@@ -99,43 +100,67 @@ export default function Portfolio() {
             {projects.map((project, idx) => (
               <AnimateIn key={project.number} direction="up" delay={idx * 100}>
                 <div
-                  className="rounded-2xl p-8 h-full flex flex-col transition-all duration-300 group"
+                  className="rounded-2xl p-8 h-full flex flex-col transition-all duration-500 group cursor-pointer"
                   style={{
                     background: "oklch(0.13 0.025 240)",
                     border: "1.5px dashed oklch(0.78 0.18 185 / 40%)",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.borderColor = "oklch(0.78 0.18 185 / 70%)";
-                    (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 30px oklch(0.78 0.18 185 / 10%)";
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.transform = "translateY(-8px) scale(1.02)";
+                    el.style.borderColor = "oklch(0.78 0.18 185 / 80%)";
+                    el.style.boxShadow = "0 20px 50px oklch(0.78 0.18 185 / 15%), inset 0 0 30px oklch(0.78 0.18 185 / 5%)";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.borderColor = "oklch(0.78 0.18 185 / 40%)";
-                    (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.transform = "translateY(0) scale(1)";
+                    el.style.borderColor = "oklch(0.78 0.18 185 / 40%)";
+                    el.style.boxShadow = "none";
                   }}
                 >
                   <div className="flex items-start justify-between mb-4">
                     <span
-                      className="text-xs px-3 py-1 rounded-full"
+                      className="text-xs px-3 py-1 rounded-full transition-all duration-500"
                       style={{
                         background: "oklch(0.78 0.18 185 / 15%)",
                         border: "1px solid oklch(0.78 0.18 185 / 40%)",
                         color: "oklch(0.78 0.18 185)",
                         fontFamily: "Inter, sans-serif",
                       }}
+                      onMouseEnter={(e) => {
+                        const el = e.currentTarget as HTMLElement;
+                        el.style.background = "oklch(0.78 0.18 185 / 25%)";
+                        el.style.borderColor = "oklch(0.78 0.18 185 / 70%)";
+                      }}
+                      onMouseLeave={(e) => {
+                        const el = e.currentTarget as HTMLElement;
+                        el.style.background = "oklch(0.78 0.18 185 / 15%)";
+                        el.style.borderColor = "oklch(0.78 0.18 185 / 40%)";
+                      }}
                     >
                       {project.category}
                     </span>
                     <span
-                      className="font-display opacity-20"
+                      className="font-display opacity-20 transition-all duration-500"
                       style={{ fontSize: "2.5rem", color: "oklch(0.78 0.18 185)", lineHeight: 1 }}
+                      onMouseEnter={(e) => {
+                        const el = e.currentTarget as HTMLElement;
+                        el.style.opacity = "0.5";
+                        el.style.transform = "scale(1.1)";
+                      }}
+                      onMouseLeave={(e) => {
+                        const el = e.currentTarget as HTMLElement;
+                        el.style.opacity = "0.2";
+                        el.style.transform = "scale(1)";
+                      }}
                     >
                       {project.number}
                     </span>
                   </div>
-                  <h3 className="font-display text-white mb-3" style={{ fontSize: "1.75rem" }}>
+                  <h3 className="font-display text-white mb-3 transition-all duration-500" style={{ fontSize: "1.75rem" }}>
                     {project.title}
                   </h3>
-                  <p className="text-white/50 text-sm leading-relaxed mb-6 flex-1" style={{ fontFamily: "Inter, sans-serif" }}>
+                  <p className="text-white/50 text-sm leading-relaxed mb-6 flex-1 transition-all duration-500" style={{ fontFamily: "Inter, sans-serif" }}>
                     {project.description}
                   </p>
                   <div className="flex items-center justify-between">
@@ -143,12 +168,22 @@ export default function Portfolio() {
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-xs px-2 py-1 rounded"
+                          className="text-xs px-2 py-1 rounded transition-all duration-300"
                           style={{
                             background: "oklch(0.09 0.02 240)",
                             border: "1px solid oklch(1 0 0 / 10%)",
                             color: "oklch(1 0 0 / 50%)",
                             fontFamily: "Inter, sans-serif",
+                          }}
+                          onMouseEnter={(e) => {
+                            const el = e.currentTarget as HTMLElement;
+                            el.style.borderColor = "oklch(0.78 0.18 185 / 50%)";
+                            el.style.color = "oklch(0.78 0.18 185)";
+                          }}
+                          onMouseLeave={(e) => {
+                            const el = e.currentTarget as HTMLElement;
+                            el.style.borderColor = "oklch(1 0 0 / 10%)";
+                            el.style.color = "oklch(1 0 0 / 50%)";
                           }}
                         >
                           {tag}
@@ -160,8 +195,18 @@ export default function Portfolio() {
                         href={project.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-sm transition-colors"
+                        className="flex items-center gap-1 text-sm transition-all duration-300"
                         style={{ color: "oklch(0.78 0.18 185)", fontFamily: "Inter, sans-serif" }}
+                        onMouseEnter={(e) => {
+                          const el = e.currentTarget as HTMLElement;
+                          el.style.transform = "translateX(4px)";
+                          el.style.color = "oklch(0.85 0.20 185)";
+                        }}
+                        onMouseLeave={(e) => {
+                          const el = e.currentTarget as HTMLElement;
+                          el.style.transform = "translateX(0)";
+                          el.style.color = "oklch(0.78 0.18 185)";
+                        }}
                       >
                         Bekijk website <ExternalLink size={14} />
                       </a>
