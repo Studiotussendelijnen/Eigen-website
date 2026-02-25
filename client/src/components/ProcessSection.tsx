@@ -44,13 +44,13 @@ export default function ProcessSection() {
   return (
     <section
       id="werkproces"
-      className="relative py-24 overflow-hidden"
+      className="relative py-16 overflow-hidden"
       style={{ background: "oklch(0.09 0.02 240)" }}
     >
       <div className="container mx-auto px-6 max-w-7xl">
         {/* Section header */}
         <AnimateIn direction="up" delay={0}>
-          <div className="text-center mb-16">
+          <div className="text-center mb-8 md:mb-16">
             <span className="tag-badge mb-4 inline-block">Hoe we werken</span>
             <h2 className="font-display text-white" style={{ fontSize: "clamp(2.5rem, 7vw, 5rem)" }}>
               ONS{" "}
@@ -103,8 +103,7 @@ export default function ProcessSection() {
               const isLeft = step.side === "left";
 
               const CardContent = (
-                <div
-                  className="rounded-2xl p-8 transition-all duration-300"
+                <div className="rounded-2xl p-5 md:p-8 transition-all duration-300"
                   style={{
                     background: "transparent",
                     border: "1px solid oklch(0.78 0.18 185 / 20%)",

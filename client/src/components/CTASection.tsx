@@ -11,7 +11,7 @@ export default function CTASection() {
   return (
     <section
       id="contact"
-      className="relative py-24 overflow-hidden"
+      className="relative py-16 overflow-hidden"
       style={{
         background: "radial-gradient(ellipse at 50% 50%, oklch(0.14 0.06 200 / 20%) 0%, oklch(0.09 0.02 240) 70%)",
       }}

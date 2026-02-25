@@ -9,6 +9,7 @@
 import { ArrowRight, Palette, Image, Share2, Monitor, Printer } from "lucide-react";
 import AnimateIn from "./AnimateIn";
 import { Link } from "wouter";
+import { useState, useEffect } from "react";
 
 const services = [
   {
@@ -49,11 +50,19 @@ const services = [
 ];
 
 export default function ServicesSection() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <section
       id="diensten"
       className="relative overflow-hidden"
-      style={{ background: "oklch(0.07 0.02 240)", paddingTop: "6rem", paddingBottom: "10rem" }}
+      style={{ background: "oklch(0.07 0.02 240)", paddingTop: "4rem", paddingBottom: "6rem" }}
     >
       {/* PASSIE watermark — full section, very prominent, behind everything */}
       <div
@@ -102,8 +111,8 @@ export default function ServicesSection() {
 
         {/* Cards row — fully transparent so PASSIE shows through clearly */}
         <div
-          className="flex flex-col md:flex-row gap-4 items-start"
-          style={{ paddingBottom: "80px" }}
+          className="flex flex-col md:flex-row gap-4 md:items-start"
+          style={{ paddingBottom: "40px" }}
         >
           {services.map((service) => (
             <AnimateIn
@@ -113,13 +122,14 @@ export default function ServicesSection() {
               className="flex-1 w-full md:w-auto"
             >
               <div
-                className="rounded-2xl p-6 flex flex-col gap-4 transition-all duration-300"
+                className="rounded-2xl p-5 flex flex-col gap-4 transition-all duration-300"
                 style={{
                   /* Fully transparent — only border visible, PASSIE shows through */
                   background: "transparent",
                   border: "1px solid oklch(0.78 0.18 185 / 25%)",
-                  marginTop: `${service.offset}px`,
-                  minHeight: "220px",
+                  /* Only apply stagger offset on md+ screens */
+                  marginTop: isMobile ? 0 : `${service.offset}px`,
+                  minHeight: "200px",
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLElement;

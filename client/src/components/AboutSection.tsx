@@ -28,7 +28,7 @@ export default function AboutSection() {
           observer.disconnect();
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -75,7 +75,7 @@ export default function AboutSection() {
     <section
       id="over-ons"
       ref={sectionRef}
-      className="relative py-24 overflow-hidden"
+      className="relative py-16 overflow-hidden"
       style={{ background: "oklch(0.09 0.02 240)" }}
     >
 
@@ -108,8 +108,8 @@ export default function AboutSection() {
                   <div
                     className="flex-shrink-0 rounded-lg overflow-hidden"
                     style={{
-                      width: "160px",
-                      height: "200px",
+                      width: "clamp(110px, 30vw, 160px)",
+                      height: "clamp(140px, 38vw, 200px)",
                       background: "oklch(0.18 0.03 240)",
                       boxShadow: "0 4px 20px oklch(0 0 0 / 40%)",
                     }}
@@ -140,7 +140,7 @@ export default function AboutSection() {
             </div>
           </AnimateIn>
 
-          {/* René Hannen */}
+          {/* René Hannen — text left, photo right */}
           <AnimateIn direction="right" delay={200}>
             <div
               className="relative overflow-hidden rounded-xl h-full"
@@ -148,22 +148,7 @@ export default function AboutSection() {
             >
               <div className="p-6">
                 <div className="flex gap-4 mb-4">
-                  {/* Real photo - René */}
-                  <div
-                    className="flex-shrink-0 rounded-lg overflow-hidden"
-                    style={{
-                      width: "160px",
-                      height: "200px",
-                      background: "oklch(0.18 0.03 240)",
-                      boxShadow: "0 4px 20px oklch(0 0 0 / 40%)",
-                    }}
-                  >
-                    <img
-                      src={RENE_PHOTO}
-                      alt="René Hannen"
-                      className="w-full h-full object-cover object-top"
-                    />
-                  </div>
+                  {/* Text info — left side */}
                   <div className="flex-1 flex flex-col justify-between">
                     <div>
                       <div
@@ -175,6 +160,22 @@ export default function AboutSection() {
                       <h3 className="font-display text-white text-xl">RENÉ HANNEN</h3>
                     </div>
                     <div style={{ color: "oklch(0.78 0.18 185)", fontSize: "1.2rem" }}>◆</div>
+                  </div>
+                  {/* Real photo - René — right side */}
+                  <div
+                    className="flex-shrink-0 rounded-lg overflow-hidden"
+                    style={{
+                      width: "clamp(110px, 30vw, 160px)",
+                      height: "clamp(140px, 38vw, 200px)",
+                      background: "oklch(0.18 0.03 240)",
+                      boxShadow: "0 4px 20px oklch(0 0 0 / 40%)",
+                    }}
+                  >
+                    <img
+                      src={RENE_PHOTO}
+                      alt="René Hannen"
+                      className="w-full h-full object-cover object-top"
+                    />
                   </div>
                 </div>
                 <p className="text-white/50 text-sm leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>

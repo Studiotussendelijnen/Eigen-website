@@ -170,7 +170,7 @@ export default function HeroSection() {
 
       {/* ===== Main content ===== */}
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center min-h-screen py-28 lg:py-32">
 
           {/* Left: Text content */}
           <div>
@@ -254,13 +254,13 @@ export default function HeroSection() {
 
           {/* Right: HUD logo circle */}
           <div
-            className="flex justify-center lg:justify-end relative"
+            className="flex justify-center lg:justify-end relative order-first lg:order-last"
             style={{
               opacity: mounted ? 1 : 0,
               transition: "opacity 1.2s ease 0.4s",
             }}
           >
-            <div className="relative" style={{ width: "460px", height: "460px" }}>
+            <div className="relative" style={{ width: "min(280px, 65vw)", height: "min(280px, 65vw)" }}>
 
               {/* Ambient glow (close, behind logo) */}
               <div
@@ -280,48 +280,33 @@ export default function HeroSection() {
                   border: "1px solid oklch(0.78 0.18 185 / 0.20)",
                   animation: "hudRotateSlow 40s linear infinite",
                 }}
-              >
-                {/* Tick marks on outer ring */}
-                {[0, 90, 180, 270].map((deg) => (
-                  <div
-                    key={deg}
-                    className="absolute"
-                    style={{
-                      width: "6px",
-                      height: "1px",
-                      background: "oklch(0.78 0.18 185 / 0.6)",
-                      top: "50%",
-                      left: "50%",
-                      transformOrigin: "0 0",
-                      transform: `rotate(${deg}deg) translateX(229px) translateY(-0.5px)`,
-                    }}
-                  />
-                ))}
-              </div>
+              />
 
               {/* Middle ring — counter-rotation */}
               <div
                 className="absolute rounded-full"
                 style={{
-                  inset: "28px",
+                  inset: "6%",
                   border: "1px solid oklch(0.78 0.18 185 / 0.30)",
                   animation: "hudRotateReverse 28s linear infinite",
                 }}
               >
-                {/* Small dots on middle ring */}
-                {[45, 135, 225, 315].map((deg) => (
+                {/* Small dots at cardinal positions using % */}
+                {[
+                  { top: "-3px", left: "50%", transform: "translateX(-50%)" },
+                  { bottom: "-3px", left: "50%", transform: "translateX(-50%)" },
+                  { left: "-3px", top: "50%", transform: "translateY(-50%)" },
+                  { right: "-3px", top: "50%", transform: "translateY(-50%)" },
+                ].map((pos, i) => (
                   <div
-                    key={deg}
+                    key={i}
                     className="absolute rounded-full"
                     style={{
                       width: "5px",
                       height: "5px",
                       background: "oklch(0.78 0.18 185)",
                       boxShadow: "0 0 6px oklch(0.78 0.18 185)",
-                      top: "50%",
-                      left: "50%",
-                      transformOrigin: "0 0",
-                      transform: `rotate(${deg}deg) translateX(202px) translateY(-2.5px)`,
+                      ...pos,
                     }}
                   />
                 ))}
@@ -331,27 +316,27 @@ export default function HeroSection() {
               <div
                 className="absolute rounded-full"
                 style={{
-                  inset: "56px",
+                  inset: "12%",
                   border: "1.5px solid oklch(0.78 0.18 185 / 0.18)",
                   animation: "hudRotateSlow 55s linear infinite reverse",
                 }}
               />
 
-              {/* Targeting frame (corner brackets) */}
+              {/* Targeting frame (corner brackets) — percentage based */}
               {/* Top-left */}
-              <div className="absolute" style={{ top: "28px", left: "28px", width: "32px", height: "32px", borderTop: "2px solid oklch(0.78 0.18 185 / 0.8)", borderLeft: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
+              <div className="absolute" style={{ top: "6%", left: "6%", width: "7%", height: "7%", borderTop: "2px solid oklch(0.78 0.18 185 / 0.8)", borderLeft: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
               {/* Top-right */}
-              <div className="absolute" style={{ top: "28px", right: "28px", width: "32px", height: "32px", borderTop: "2px solid oklch(0.78 0.18 185 / 0.8)", borderRight: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
+              <div className="absolute" style={{ top: "6%", right: "6%", width: "7%", height: "7%", borderTop: "2px solid oklch(0.78 0.18 185 / 0.8)", borderRight: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
               {/* Bottom-left */}
-              <div className="absolute" style={{ bottom: "28px", left: "28px", width: "32px", height: "32px", borderBottom: "2px solid oklch(0.78 0.18 185 / 0.8)", borderLeft: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
+              <div className="absolute" style={{ bottom: "6%", left: "6%", width: "7%", height: "7%", borderBottom: "2px solid oklch(0.78 0.18 185 / 0.8)", borderLeft: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
               {/* Bottom-right */}
-              <div className="absolute" style={{ bottom: "28px", right: "28px", width: "32px", height: "32px", borderBottom: "2px solid oklch(0.78 0.18 185 / 0.8)", borderRight: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
+              <div className="absolute" style={{ bottom: "6%", right: "6%", width: "7%", height: "7%", borderBottom: "2px solid oklch(0.78 0.18 185 / 0.8)", borderRight: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
 
               {/* Logo image centered */}
               <div
                 className="absolute overflow-hidden flex items-center justify-center"
                 style={{
-                  inset: "56px",
+                  inset: "12%",
                   borderRadius: "50%",
                   background: "radial-gradient(circle, oklch(0.16 0.08 200 / 0.7) 0%, oklch(0.09 0.03 210 / 0.9) 100%)",
                   border: "1px solid oklch(0.78 0.18 185 / 0.15)",
@@ -386,53 +371,25 @@ export default function HeroSection() {
                 />
               </div>
 
-              {/* Orbit dots (outside the main circle) */}
-              <div
-                className="absolute rounded-full"
-                style={{
-                  width: "8px",
-                  height: "8px",
-                  background: "oklch(0.78 0.18 185)",
-                  boxShadow: "0 0 10px oklch(0.78 0.18 185)",
-                  top: "50%",
-                  left: "-4px",
-                  transform: "translateY(-50%)",
-                }}
-              />
-              <div
-                className="absolute rounded-full"
-                style={{
-                  width: "8px",
-                  height: "8px",
-                  background: "oklch(0.78 0.18 185)",
-                  boxShadow: "0 0 10px oklch(0.78 0.18 185)",
-                  top: "50%",
-                  right: "-4px",
-                  transform: "translateY(-50%)",
-                }}
-              />
-              <div
-                className="absolute rounded-full"
-                style={{
-                  width: "6px",
-                  height: "6px",
-                  background: "oklch(0.78 0.18 185 / 0.7)",
-                  top: "-3px",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                }}
-              />
-              <div
-                className="absolute rounded-full"
-                style={{
-                  width: "6px",
-                  height: "6px",
-                  background: "oklch(0.78 0.18 185 / 0.7)",
-                  bottom: "-3px",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                }}
-              />
+              {/* Orbit dots at cardinal positions */}
+              {[
+                { top: "50%", left: "-3px", transform: "translateY(-50%)" },
+                { top: "50%", right: "-3px", transform: "translateY(-50%)" },
+                { top: "-3px", left: "50%", transform: "translateX(-50%)" },
+                { bottom: "-3px", left: "50%", transform: "translateX(-50%)" },
+              ].map((pos, i) => (
+                <div
+                  key={i}
+                  className="absolute rounded-full"
+                  style={{
+                    width: "7px",
+                    height: "7px",
+                    background: "oklch(0.78 0.18 185)",
+                    boxShadow: "0 0 8px oklch(0.78 0.18 185)",
+                    ...pos,
+                  }}
+                />
+              ))}
             </div>
           </div>
         </div>
