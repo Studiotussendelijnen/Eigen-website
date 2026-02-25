@@ -75,11 +75,11 @@ export default function Footer() {
             </h4>
             <div className="space-y-3">
               <a
-                href="mailto:hallo@tussendelijnen.nl"
+                href="mailto:hallo@studiotussendelijnen.nl"
                 className="block text-sm transition-colors duration-200"
                 style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.78 0.18 185)" }}
               >
-                hallo@tussendelijnen.nl
+                hallo@studiotussendelijnen.nl
               </a>
               <div className="flex items-start gap-2">
                 <MapPin size={14} className="mt-0.5 flex-shrink-0" style={{ color: "oklch(0.78 0.18 185 / 60%)" }} />

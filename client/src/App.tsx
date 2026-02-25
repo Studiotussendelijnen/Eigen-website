@@ -4,6 +4,7 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import ProgressBar from "./components/ProgressBar";
 import Home from "./pages/Home";
 import Diensten from "./pages/Diensten";
 import OverOns from "./pages/OverOns";
@@ -32,6 +33,7 @@ function App() {
         defaultTheme="dark"
       >
         <TooltipProvider>
+          <ProgressBar />
           <Toaster />
           <Router />
         </TooltipProvider>

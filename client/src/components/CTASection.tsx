@@ -38,8 +38,8 @@ export default function CTASection() {
             <Link href="/contact" className="btn-primary-cyan text-sm">
               Trek de eerste lijn <ArrowRight size={16} />
             </Link>
-            <a href="mailto:hallo@tussendelijnen.nl" className="btn-outline-dashed text-sm">
-              <Mail size={16} /> hallo@tussendelijnen.nl
+            <a href="mailto:hallo@studiotussendelijnen.nl" className="btn-outline-dashed text-sm">
+              <Mail size={16} /> hallo@studiotussendelijnen.nl
             </a>
           </div>
         </AnimateIn>
