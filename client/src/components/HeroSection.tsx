@@ -207,7 +207,7 @@ export default function HeroSection() {
                 NAAR
               </h1>
               {/* Flex row: typewriter text + small logo on mobile only */}
-              <div className="flex items-center gap-2 md:gap-0 mb-6">
+              <div className="flex items-center gap-0 md:gap-0 mb-6">
                 <h1
                   className="font-display"
                   style={{
