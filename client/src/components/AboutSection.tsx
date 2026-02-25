@@ -36,34 +36,43 @@ export default function AboutSection() {
 
   // Eased count-up animation using requestAnimationFrame
   useEffect(() => {
-    if (!visible) return;
+    if (!visible) {
+      setCount(0);
+      setPassie(0);
+      return;
+    }
 
-    // Count "2" over 1.2s with ease-out
-    const duration1 = 1200;
-    const target1 = 2;
-    const start1 = performance.now();
-    const raf1 = (now: number) => {
-      const elapsed = now - start1;
-      const progress = Math.min(elapsed / duration1, 1);
-      // ease-out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.round(eased * target1));
-      if (progress < 1) requestAnimationFrame(raf1);
-    };
-    requestAnimationFrame(raf1);
+    // Small delay before starting animation
+    const startDelay = setTimeout(() => {
+      // Count "2" over 1.2s with ease-out
+      const duration1 = 1200;
+      const target1 = 2;
+      const start1 = performance.now();
+      const raf1 = (now: number) => {
+        const elapsed = now - start1;
+        const progress = Math.min(elapsed / duration1, 1);
+        // ease-out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        setCount(Math.round(eased * target1));
+        if (progress < 1) requestAnimationFrame(raf1);
+      };
+      requestAnimationFrame(raf1);
 
-    // Count "100%" over 2s with ease-out
-    const duration2 = 2000;
-    const target2 = 100;
-    const start2 = performance.now();
-    const raf2 = (now: number) => {
-      const elapsed = now - start2;
-      const progress = Math.min(elapsed / duration2, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setPassie(Math.round(eased * target2));
-      if (progress < 1) requestAnimationFrame(raf2);
-    };
-    requestAnimationFrame(raf2);
+      // Count "100%" over 2s with ease-out
+      const duration2 = 2000;
+      const target2 = 100;
+      const start2 = performance.now();
+      const raf2 = (now: number) => {
+        const elapsed = now - start2;
+        const progress = Math.min(elapsed / duration2, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        setPassie(Math.round(eased * target2));
+        if (progress < 1) requestAnimationFrame(raf2);
+      };
+      requestAnimationFrame(raf2);
+    }, 100);
+
+    return () => clearTimeout(startDelay);
   }, [visible]);
 
   const handleScroll = (href: string) => {

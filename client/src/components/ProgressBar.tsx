@@ -16,13 +16,15 @@ export default function ProgressBar() {
       setProgress(scrollPercent);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    // Call once on mount to set initial value
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <div
-      className="fixed top-0 left-0 h-1 z-50 transition-all duration-300"
+      className="fixed top-0 left-0 h-1 z-[9999] transition-all duration-300"
       style={{
         width: `${progress}%`,
         background: "linear-gradient(90deg, oklch(0.78 0.18 185), oklch(0.85 0.20 185))",
