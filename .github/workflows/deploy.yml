@@ -23,6 +23,17 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Debug dist folders
+        run: |
+          echo "== root =="
+          ls -la
+          echo "== client =="
+          ls -la client || true
+          echo "== client/dist =="
+          ls -la client/dist || true
+          echo "== dist =="
+          ls -la dist || true
+
       - name: Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -30,5 +41,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          local-dir: client/dist/
+          local-dir: dist/
           dangerous-clean-slate: true
