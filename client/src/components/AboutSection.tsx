@@ -34,45 +34,43 @@ export default function AboutSection() {
     return () => observer.disconnect();
   }, []);
 
-  // Eased count-up animation using requestAnimationFrame
+  // Counter animation using requestAnimationFrame
   useEffect(() => {
-    if (!visible) {
-      setCount(0);
-      setPassie(0);
-      return;
-    }
+    if (!visible) return;
 
-    // Small delay before starting animation
-    const startDelay = setTimeout(() => {
-      // Count "2" over 1.2s with ease-out
-      const duration1 = 1200;
-      const target1 = 2;
-      const start1 = performance.now();
-      const raf1 = (now: number) => {
-        const elapsed = now - start1;
-        const progress = Math.min(elapsed / duration1, 1);
-        // ease-out cubic
-        const eased = 1 - Math.pow(1 - progress, 3);
-        setCount(Math.round(eased * target1));
-        if (progress < 1) requestAnimationFrame(raf1);
-      };
-      requestAnimationFrame(raf1);
+    let animationFrameId1: number;
+    let animationFrameId2: number;
 
-      // Count "100%" over 2s with ease-out
-      const duration2 = 2000;
-      const target2 = 100;
-      const start2 = performance.now();
-      const raf2 = (now: number) => {
-        const elapsed = now - start2;
-        const progress = Math.min(elapsed / duration2, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        setPassie(Math.round(eased * target2));
-        if (progress < 1) requestAnimationFrame(raf2);
-      };
-      requestAnimationFrame(raf2);
-    }, 100);
+    // Animate count to 2
+    const startTime1 = Date.now();
+    const animateCount = () => {
+      const elapsed = Date.now() - startTime1;
+      const progress = Math.min(elapsed / 1200, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * 2));
+      if (progress < 1) {
+        animationFrameId1 = requestAnimationFrame(animateCount);
+      }
+    };
+    animationFrameId1 = requestAnimationFrame(animateCount);
 
-    return () => clearTimeout(startDelay);
+    // Animate passie to 100
+    const startTime2 = Date.now();
+    const animatePassie = () => {
+      const elapsed = Date.now() - startTime2;
+      const progress = Math.min(elapsed / 2000, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setPassie(Math.round(eased * 100));
+      if (progress < 1) {
+        animationFrameId2 = requestAnimationFrame(animatePassie);
+      }
+    };
+    animationFrameId2 = requestAnimationFrame(animatePassie);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId1);
+      cancelAnimationFrame(animationFrameId2);
+    };
   }, [visible]);
 
   const handleScroll = (href: string) => {
@@ -210,8 +208,8 @@ export default function AboutSection() {
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mb-10">
           {[
-            { value: visible ? count : 0, label: "Creatieve koppen", isInfinity: false },
-            { value: visible ? passie : 0, label: "Passie", isInfinity: false, suffix: "%" },
+            { value: count, label: "Creatieve koppen", isInfinity: false },
+            { value: passie, label: "Passie", isInfinity: false, suffix: "%" },
             { value: null, label: "Creativiteit", isInfinity: true },
           ].map((stat, idx) => (
             <AnimateIn key={stat.label} direction="up" delay={idx * 120}>
