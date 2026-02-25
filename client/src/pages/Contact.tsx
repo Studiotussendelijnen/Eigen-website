@@ -7,7 +7,7 @@ import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimateIn from "@/components/AnimateIn";
-import { Mail, Clock, Send } from "lucide-react";
+import { Mail, Clock, Send, MapPin } from "lucide-react";
 import { toast } from "sonner";
 
 export default function Contact() {
@@ -134,6 +134,35 @@ export default function Contact() {
                       <p className="text-white/40 text-xs uppercase tracking-widest mb-1" style={{ fontFamily: "Inter, sans-serif" }}>Reactietijd</p>
                       <p className="text-white text-sm font-medium" style={{ fontFamily: "Inter, sans-serif" }}>
                         Binnen 24 uur
+                      </p>
+                    </div>
+                  </div>
+                </AnimateIn>
+
+                <AnimateIn direction="left" delay={500}>
+                  <div
+                    className="flex items-center gap-4 rounded-xl p-5"
+                    style={{
+                      background: "oklch(0.13 0.025 240)",
+                      border: "1px solid oklch(1 0 0 / 8%)",
+                    }}
+                  >
+                    <div
+                      className="flex items-center justify-center rounded-xl flex-shrink-0"
+                      style={{
+                        width: "44px",
+                        height: "44px",
+                        background: "oklch(0.78 0.18 185 / 15%)",
+                        border: "1px solid oklch(0.78 0.18 185 / 40%)",
+                      }}
+                    >
+                      <MapPin size={20} style={{ color: "oklch(0.78 0.18 185)" }} strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <p className="text-white/40 text-xs uppercase tracking-widest mb-1" style={{ fontFamily: "Inter, sans-serif" }}>Adres</p>
+                      <p className="text-white text-sm font-medium" style={{ fontFamily: "Inter, sans-serif" }}>
+                        Kanaaldijk 2<br />
+                        <span className="text-white/60">5768 RE Meijel</span>
                       </p>
                     </div>
                   </div>

@@ -1,9 +1,12 @@
 /**
  * ServicesSection - Dark cyberpunk creative studio
- * Layout: heading top-left, description top-right, PASSIE watermark behind the cards
- * Cards in a staggered row with vertical offsets matching screenshot 3
+ * - PASSIE watermark spans the full section behind the cards
+ * - Cards are semi-transparent so PASSIE is visible through them
+ * - Dot-indicator pagination animation on the right side
+ * - Staggered vertical offset cards matching the reference screenshot
  */
 
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Palette, Image, Share2, Monitor, Printer } from "lucide-react";
 import AnimateIn from "./AnimateIn";
 import { Link } from "wouter";
@@ -46,21 +49,84 @@ const services = [
   },
 ];
 
+// Dot indicator that cycles through 4 positions automatically
+function DotIndicator() {
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((prev) => (prev + 1) % 4);
+    }, 1800);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="flex items-center gap-2">
+      {[0, 1, 2, 3].map((i) => (
+        <div
+          key={i}
+          style={{
+            width: active === i ? "28px" : "8px",
+            height: "8px",
+            borderRadius: "4px",
+            background: active === i ? "oklch(0.78 0.18 185)" : "oklch(1 0 0 / 25%)",
+            transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function ServicesSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
   return (
     <section
       id="diensten"
+      ref={sectionRef}
       className="relative overflow-hidden"
       style={{ background: "oklch(0.07 0.02 240)", paddingTop: "6rem", paddingBottom: "10rem" }}
     >
-      {/* Floating decorations */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="diamond-deco animate-float-slow" style={{ top: "8%", right: "3%", opacity: 0.2 }} />
-        <div className="float-dot animate-pulse-glow" style={{ bottom: "25%", left: "2%", animationDelay: "1.5s" }} />
-        <div className="square-deco animate-float" style={{ top: "60%", right: "1.5%", opacity: 0.15, animationDelay: "2s" }} />
+      {/* PASSIE watermark — full section, very prominent */}
+      <div
+        className="absolute font-display pointer-events-none select-none"
+        style={{
+          fontSize: "clamp(10rem, 28vw, 22rem)",
+          color: "oklch(0.75 0.04 200 / 12%)",
+          lineHeight: 1,
+          top: "38%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          whiteSpace: "nowrap",
+          zIndex: 0,
+          letterSpacing: "-0.02em",
+        }}
+      >
+        PASSIE
       </div>
 
-      <div className="container mx-auto px-6 max-w-7xl">
+      {/* Dot indicator — right side, like the reference */}
+      <div
+        className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none"
+        style={{ zIndex: 2 }}
+      >
+        <DotIndicator />
+      </div>
+
+      {/* Small floating dot — left side */}
+      <div
+        className="absolute left-8 top-1/2 pointer-events-none"
+        style={{
+          width: "6px",
+          height: "6px",
+          borderRadius: "50%",
+          background: "oklch(0.78 0.18 185)",
+          opacity: 0.5,
+          zIndex: 2,
+        }}
+      />
+
+      <div className="container mx-auto px-6 max-w-7xl relative" style={{ zIndex: 1 }}>
         {/* Header row: title left, description right */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 items-end">
           <div>
@@ -87,87 +153,74 @@ export default function ServicesSection() {
           </AnimateIn>
         </div>
 
-        {/* Cards container — PASSIE watermark is BEHIND the cards */}
-        <div className="relative" style={{ paddingBottom: "100px" }}>
-          {/* PASSIE watermark — positioned behind cards, spanning the full width */}
-          <div
-            className="absolute font-display pointer-events-none select-none"
-            style={{
-              fontSize: "clamp(8rem, 22vw, 18rem)",
-              color: "oklch(0.85 0.05 200 / 9%)",
-              lineHeight: 1,
-              top: "40%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              whiteSpace: "nowrap",
-              zIndex: 0,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            PASSIE
-          </div>
-
-          {/* Cards row */}
-          <div className="relative flex flex-col md:flex-row gap-4 items-start" style={{ zIndex: 1 }}>
-            {services.map((service) => (
-              <AnimateIn
-                key={service.title}
-                direction="up"
-                delay={service.delay}
-                className="flex-1 w-full md:w-auto"
+        {/* Cards row — semi-transparent so PASSIE shows through */}
+        <div
+          className="flex flex-col md:flex-row gap-4 items-start"
+          style={{ paddingBottom: "80px" }}
+        >
+          {services.map((service) => (
+            <AnimateIn
+              key={service.title}
+              direction="up"
+              delay={service.delay}
+              className="flex-1 w-full md:w-auto"
+            >
+              <div
+                className="rounded-2xl p-6 flex flex-col gap-4 transition-all duration-300"
+                style={{
+                  /* Semi-transparent background so PASSIE watermark shows through */
+                  background: "oklch(0.12 0.03 220 / 65%)",
+                  border: "1px solid oklch(0.78 0.18 185 / 20%)",
+                  backdropFilter: "blur(2px)",
+                  WebkitBackdropFilter: "blur(2px)",
+                  marginTop: `${service.offset}px`,
+                  minHeight: "220px",
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.borderColor = "oklch(0.78 0.18 185 / 60%)";
+                  el.style.boxShadow = "0 8px 32px oklch(0.78 0.18 185 / 12%)";
+                  el.style.transform = "translateY(-6px)";
+                  el.style.background = "oklch(0.14 0.04 220 / 80%)";
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.borderColor = "oklch(0.78 0.18 185 / 20%)";
+                  el.style.boxShadow = "none";
+                  el.style.transform = "translateY(0)";
+                  el.style.background = "oklch(0.12 0.03 220 / 65%)";
+                }}
               >
+                {/* Icon box */}
                 <div
-                  className="rounded-2xl p-6 flex flex-col gap-4 transition-all duration-300"
+                  className="flex items-center justify-center rounded-xl flex-shrink-0"
                   style={{
-                    background: "oklch(0.12 0.025 240)",
-                    border: "1px solid oklch(1 0 0 / 8%)",
-                    marginTop: `${service.offset}px`,
-                    minHeight: "220px",
-                  }}
-                  onMouseEnter={(e) => {
-                    const el = e.currentTarget as HTMLElement;
-                    el.style.borderColor = "oklch(0.78 0.18 185 / 55%)";
-                    el.style.boxShadow = "0 8px 32px oklch(0.78 0.18 185 / 12%)";
-                    el.style.transform = "translateY(-6px)";
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget as HTMLElement;
-                    el.style.borderColor = "oklch(1 0 0 / 8%)";
-                    el.style.boxShadow = "none";
-                    el.style.transform = "translateY(0)";
+                    width: "52px",
+                    height: "52px",
+                    background: "oklch(0.78 0.18 185 / 20%)",
+                    border: "1px solid oklch(0.78 0.18 185 / 40%)",
+                    color: "oklch(0.78 0.18 185)",
                   }}
                 >
-                  {/* Icon box */}
-                  <div
-                    className="flex items-center justify-center rounded-xl flex-shrink-0"
-                    style={{
-                      width: "52px",
-                      height: "52px",
-                      background: "oklch(0.78 0.18 185 / 15%)",
-                      border: "1px solid oklch(0.78 0.18 185 / 35%)",
-                      color: "oklch(0.78 0.18 185)",
-                    }}
-                  >
-                    {service.icon}
-                  </div>
-                  <div>
-                    <h3
-                      className="font-display text-white mb-2"
-                      style={{ fontSize: "1rem", letterSpacing: "0.06em" }}
-                    >
-                      {service.title}
-                    </h3>
-                    <p
-                      className="text-white/50 text-sm leading-relaxed"
-                      style={{ fontFamily: "Inter, sans-serif" }}
-                    >
-                      {service.description}
-                    </p>
-                  </div>
+                  {service.icon}
                 </div>
-              </AnimateIn>
-            ))}
-          </div>
+                <div>
+                  <h3
+                    className="font-display text-white mb-2"
+                    style={{ fontSize: "1rem", letterSpacing: "0.06em" }}
+                  >
+                    {service.title}
+                  </h3>
+                  <p
+                    className="text-white/60 text-sm leading-relaxed"
+                    style={{ fontFamily: "Inter, sans-serif" }}
+                  >
+                    {service.description}
+                  </p>
+                </div>
+              </div>
+            </AnimateIn>
+          ))}
         </div>
 
         {/* CTA */}
