@@ -8,7 +8,6 @@
  * Floating particles: dots, squares, outlines with slow random motion
  * Mouse parallax: particles shift subtly with mouse position
  * Typewriter cycler: IMPACT → RESULTAAT → CONVERSIE
- * Logo inline next to typewriter text
  * CDN assets:
  *   Logo: https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png
  */
@@ -171,9 +170,9 @@ export default function HeroSection() {
 
       {/* ===== Main content ===== */}
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="min-h-screen py-28 md:py-32 flex flex-col justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center min-h-screen py-28 md:py-32">
 
-          {/* Text content */}
+          {/* Left: Text content */}
           <div>
             {/* Badge */}
             <div
@@ -186,7 +185,7 @@ export default function HeroSection() {
               <span className="tag-badge mb-6 inline-block">Creative Design Studio</span>
             </div>
 
-            {/* Heading with inline logo */}
+            {/* Heading */}
             <div
               style={{
                 opacity: mounted ? 1 : 0,
@@ -206,90 +205,17 @@ export default function HeroSection() {
               >
                 NAAR
               </h1>
-              {/* Flex row: typewriter text + logo */}
-              <div className="flex items-center gap-4 md:gap-8 mb-6">
-                <h1
-                  className="font-display"
-                  style={{
-                    fontSize: "clamp(3rem, 8vw, 6rem)",
-                    lineHeight: 1.0,
-                    color: "oklch(0.78 0.18 185)",
-                    textShadow: "0 0 40px oklch(0.78 0.18 185 / 0.5)",
-                  }}
-                >
-                  <TypewriterCycler />
-                </h1>
-                {/* HUD logo inline */}
-                <div
-                  className="flex-shrink-0"
-                  style={{
-                    width: "clamp(80px, 20vw, 200px)",
-                    height: "clamp(80px, 20vw, 200px)",
-                    opacity: mounted ? 1 : 0,
-                    transition: "opacity 1.2s ease 0.4s",
-                  }}
-                >
-                  <div className="relative" style={{ width: "100%", height: "100%" }}>
-                    {/* Ambient glow */}
-                    <div
-                      className="absolute rounded-full"
-                      style={{
-                        inset: "-30%",
-                        background: "radial-gradient(circle, oklch(0.78 0.18 185 / 0.18) 0%, transparent 65%)",
-                        filter: "blur(20px)",
-                        animation: "hudGlow 4s ease-in-out infinite",
-                      }}
-                    />
-                    {/* Outer ring */}
-                    <div
-                      className="absolute inset-0 rounded-full"
-                      style={{
-                        border: "1px solid oklch(0.78 0.18 185 / 0.20)",
-                        animation: "hudRotateSlow 40s linear infinite",
-                      }}
-                    />
-                    {/* Middle ring */}
-                    <div
-                      className="absolute rounded-full"
-                      style={{
-                        inset: "6%",
-                        border: "1px solid oklch(0.78 0.18 185 / 0.30)",
-                        animation: "hudRotateReverse 28s linear infinite",
-                      }}
-                    />
-                    {/* Inner ring */}
-                    <div
-                      className="absolute rounded-full"
-                      style={{
-                        inset: "12%",
-                        border: "1.5px solid oklch(0.78 0.18 185 / 0.18)",
-                        animation: "hudRotateSlow 55s linear infinite reverse",
-                      }}
-                    />
-                    {/* Logo image */}
-                    <div
-                      className="absolute overflow-hidden flex items-center justify-center"
-                      style={{
-                        inset: "12%",
-                        borderRadius: "50%",
-                        background: "radial-gradient(circle, oklch(0.16 0.08 200 / 0.7) 0%, oklch(0.09 0.03 210 / 0.9) 100%)",
-                        border: "1px solid oklch(0.78 0.18 185 / 0.15)",
-                      }}
-                    >
-                      <img
-                        src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png"
-                        alt="Tussen de Lijnen"
-                        style={{
-                          width: "85%",
-                          height: "85%",
-                          objectFit: "contain",
-                          filter: "drop-shadow(0 0 30px oklch(0.78 0.18 185 / 0.7))",
-                        }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <h1
+                className="font-display mb-6"
+                style={{
+                  fontSize: "clamp(3rem, 8vw, 6rem)",
+                  lineHeight: 1.0,
+                  color: "oklch(0.78 0.18 185)",
+                  textShadow: "0 0 40px oklch(0.78 0.18 185 / 0.5)",
+                }}
+              >
+                <TypewriterCycler />
+              </h1>
             </div>
 
             {/* Subtext */}
@@ -323,6 +249,147 @@ export default function HeroSection() {
               <Link href="/diensten" className="btn-outline-dashed">
                 Bekijk ons werk
               </Link>
+            </div>
+          </div>
+
+          {/* Right: HUD logo circle — hidden on mobile, visible on md+ */}
+          <div
+            className="hidden md:flex justify-end relative order-last md:order-last"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transition: "opacity 1.2s ease 0.4s",
+            }}
+          >
+            <div className="relative" style={{ width: "min(420px, 44vw)", height: "min(420px, 44vw)" }}>
+
+              {/* Ambient glow (close, behind logo) */}
+              <div
+                className="absolute rounded-full"
+                style={{
+                  inset: "-30px",
+                  background: "radial-gradient(circle, oklch(0.78 0.18 185 / 0.18) 0%, transparent 65%)",
+                  filter: "blur(20px)",
+                  animation: "hudGlow 4s ease-in-out infinite",
+                }}
+              />
+
+              {/* Outer ring — very slow rotation */}
+              <div
+                className="absolute inset-0 rounded-full"
+                style={{
+                  border: "1px solid oklch(0.78 0.18 185 / 0.20)",
+                  animation: "hudRotateSlow 40s linear infinite",
+                }}
+              />
+
+              {/* Middle ring — counter-rotation */}
+              <div
+                className="absolute rounded-full"
+                style={{
+                  inset: "6%",
+                  border: "1px solid oklch(0.78 0.18 185 / 0.30)",
+                  animation: "hudRotateReverse 28s linear infinite",
+                }}
+              >
+                {/* Small dots at cardinal positions using % */}
+                {[
+                  { top: "-3px", left: "50%", transform: "translateX(-50%)" },
+                  { bottom: "-3px", left: "50%", transform: "translateX(-50%)" },
+                  { left: "-3px", top: "50%", transform: "translateY(-50%)" },
+                  { right: "-3px", top: "50%", transform: "translateY(-50%)" },
+                ].map((pos, i) => (
+                  <div
+                    key={i}
+                    className="absolute rounded-full"
+                    style={{
+                      width: "5px",
+                      height: "5px",
+                      background: "oklch(0.78 0.18 185)",
+                      boxShadow: "0 0 6px oklch(0.78 0.18 185)",
+                      ...pos,
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Inner ring — slow rotation */}
+              <div
+                className="absolute rounded-full"
+                style={{
+                  inset: "12%",
+                  border: "1.5px solid oklch(0.78 0.18 185 / 0.18)",
+                  animation: "hudRotateSlow 55s linear infinite reverse",
+                }}
+              />
+
+              {/* Targeting frame (corner brackets) — percentage based */}
+              {/* Top-left */}
+              <div className="absolute" style={{ top: "6%", left: "6%", width: "7%", height: "7%", borderTop: "2px solid oklch(0.78 0.18 185 / 0.8)", borderLeft: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
+              {/* Top-right */}
+              <div className="absolute" style={{ top: "6%", right: "6%", width: "7%", height: "7%", borderTop: "2px solid oklch(0.78 0.18 185 / 0.8)", borderRight: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
+              {/* Bottom-left */}
+              <div className="absolute" style={{ bottom: "6%", left: "6%", width: "7%", height: "7%", borderBottom: "2px solid oklch(0.78 0.18 185 / 0.8)", borderLeft: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
+              {/* Bottom-right */}
+              <div className="absolute" style={{ bottom: "6%", right: "6%", width: "7%", height: "7%", borderBottom: "2px solid oklch(0.78 0.18 185 / 0.8)", borderRight: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
+
+              {/* Logo image centered */}
+              <div
+                className="absolute overflow-hidden flex items-center justify-center"
+                style={{
+                  inset: "12%",
+                  borderRadius: "50%",
+                  background: "radial-gradient(circle, oklch(0.16 0.08 200 / 0.7) 0%, oklch(0.09 0.03 210 / 0.9) 100%)",
+                  border: "1px solid oklch(0.78 0.18 185 / 0.15)",
+                }}
+              >
+                <img
+                  src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png"
+                  alt="Tussen de Lijnen - Creative Design Studio"
+                  style={{
+                    width: "85%",
+                    height: "85%",
+                    objectFit: "contain",
+                    filter: "drop-shadow(0 0 30px oklch(0.78 0.18 185 / 0.7))",
+                  }}
+                />
+              </div>
+
+              {/* Scanning line */}
+              <div
+                className="absolute rounded-full overflow-hidden pointer-events-none"
+                style={{ inset: "56px" }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    left: 0,
+                    right: 0,
+                    height: "1px",
+                    background: "linear-gradient(90deg, transparent, oklch(0.78 0.18 185 / 0.6), transparent)",
+                    animation: "hudScan 3s ease-in-out infinite",
+                  }}
+                />
+              </div>
+
+              {/* Orbit dots at cardinal positions */}
+              {[
+                { top: "50%", left: "-3px", transform: "translateY(-50%)" },
+                { top: "50%", right: "-3px", transform: "translateY(-50%)" },
+                { top: "-3px", left: "50%", transform: "translateX(-50%)" },
+                { bottom: "-3px", left: "50%", transform: "translateX(-50%)" },
+              ].map((pos, i) => (
+                <div
+                  key={i}
+                  className="absolute rounded-full"
+                  style={{
+                    width: "7px",
+                    height: "7px",
+                    background: "oklch(0.78 0.18 185)",
+                    boxShadow: "0 0 8px oklch(0.78 0.18 185)",
+                    ...pos,
+                  }}
+                />
+              ))}
             </div>
           </div>
         </div>

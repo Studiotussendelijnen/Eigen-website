@@ -10,9 +10,9 @@ import AnimateIn from "@/components/AnimateIn";
 import { Mail, Clock, Send, MapPin } from "lucide-react";
 import { toast } from "sonner";
 
-// Formspree endpoint — forwards submissions to hallo@tussendelijnen.nl
-// On first submission Formspree will send a confirmation email to hallo@tussendelijnen.nl — click the link to activate.
-const FORMSPREE_ENDPOINT = "https://formspree.io/hallo@tussendelijnen.nl";
+// Formspree endpoint — forwards submissions to hallo@studiotussendelijnen.nl
+// On first submission Formspree will send a confirmation email to hallo@studiotussendelijnen.nl — click the link to activate.
+const FORMSPREE_ENDPOINT = "https://formspree.io/hallo@studiotussendelijnen.nl";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", service: "", message: "" });
@@ -36,7 +36,7 @@ export default function Contact() {
         toast.success("Bericht verstuurd! We nemen binnen 24 uur contact op.");
         setForm({ name: "", email: "", service: "", message: "" });
       } else {
-        toast.error("Er ging iets mis. Stuur ons een e-mail via hallo@tussendelijnen.nl");
+        toast.error("Er ging iets mis. Stuur ons een e-mail via hallo@studiotussendelijnen.nl");
       }
     } catch {
       toast.error("Geen verbinding. Probeer het later opnieuw.");
@@ -121,11 +121,11 @@ export default function Contact() {
                     <div>
                       <p className="text-white/40 text-xs uppercase tracking-widest mb-1" style={{ fontFamily: "Inter, sans-serif" }}>E-mail</p>
                       <a
-                        href="mailto:hallo@tussendelijnen.nl"
+                        href="mailto:hallo@studiotussendelijnen.nl"
                         className="text-white text-sm font-medium transition-colors hover:text-cyan-400"
                         style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.78 0.18 185)" }}
                       >
-                        hallo@tussendelijnen.nl
+                        hallo@studiotussendelijnen.nl
                       </a>
                     </div>
                   </div>
