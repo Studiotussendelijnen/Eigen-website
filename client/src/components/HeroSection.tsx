@@ -170,34 +170,13 @@ export default function HeroSection() {
 
       {/* ===== Main content ===== */}
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center min-h-screen py-28 md:py-32">
+        <div className="grid grid-cols-2 gap-4 md:gap-12 items-center min-h-screen py-28 md:py-32">
 
           {/* Left: Text content */}
           <div>
-            {/* Mobile: logo small next to badge row — hidden on md+ */}
-            <div className="flex items-center gap-4 mb-6 md:hidden"
-              style={{
-                opacity: mounted ? 1 : 0,
-                transition: "opacity 0.7s ease 0.1s",
-              }}
-            >
-              <span className="tag-badge">Creative Design Studio</span>
-              {/* Small HUD logo on mobile */}
-              <div className="relative flex-shrink-0" style={{ width: "56px", height: "56px" }}>
-                <div className="absolute inset-0 rounded-full" style={{ border: "1px solid oklch(0.78 0.18 185 / 0.25)", animation: "hudRotateSlow 40s linear infinite" }} />
-                <div className="absolute rounded-full" style={{ inset: "4px", border: "1px solid oklch(0.78 0.18 185 / 0.35)", animation: "hudRotateReverse 28s linear infinite" }} />
-                <div className="absolute overflow-hidden flex items-center justify-center rounded-full" style={{ inset: "8px", background: "radial-gradient(circle, oklch(0.16 0.08 200 / 0.7) 0%, oklch(0.09 0.03 210 / 0.9) 100%)", border: "1px solid oklch(0.78 0.18 185 / 0.15)" }}>
-                  <img
-                    src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png"
-                    alt="Tussen de Lijnen"
-                    style={{ width: "85%", height: "85%", objectFit: "contain", filter: "drop-shadow(0 0 10px oklch(0.78 0.18 185 / 0.7))" }}
-                  />
-                </div>
-              </div>
-            </div>
-            {/* Badge — hidden on mobile (shown in mobile row above), visible on md+ */}
+            {/* Badge — always visible */}
             <div
-              className="hidden md:block"
+              className="block"
               style={{
                 opacity: mounted ? 1 : 0,
                 transform: mounted ? "translateY(0)" : "translateY(-16px)",
@@ -274,15 +253,15 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right: HUD logo circle — hidden on mobile, visible on tablet and desktop (md+) */}
+          {/* Right: HUD logo circle — always visible, scales with screen size */}
           <div
-            className="hidden md:flex justify-end relative order-last md:order-last"
+            className="flex justify-end relative order-last"
             style={{
               opacity: mounted ? 1 : 0,
               transition: "opacity 1.2s ease 0.4s",
             }}
           >
-            <div className="relative" style={{ width: "min(420px, 44vw)", height: "min(420px, 44vw)" }}>
+            <div className="relative" style={{ width: "clamp(100px, 44vw, 420px)", height: "clamp(100px, 44vw, 420px)" }}>
 
               {/* Ambient glow (close, behind logo) */}
               <div
