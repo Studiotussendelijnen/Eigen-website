@@ -174,8 +174,30 @@ export default function HeroSection() {
 
           {/* Left: Text content */}
           <div>
-            {/* Badge */}
+            {/* Mobile: logo small next to badge row */}
+            <div className="flex items-center gap-4 mb-6 lg:hidden"
+              style={{
+                opacity: mounted ? 1 : 0,
+                transition: "opacity 0.7s ease 0.1s",
+              }}
+            >
+              <span className="tag-badge">Creative Design Studio</span>
+              {/* Small HUD logo on mobile */}
+              <div className="relative flex-shrink-0" style={{ width: "56px", height: "56px" }}>
+                <div className="absolute inset-0 rounded-full" style={{ border: "1px solid oklch(0.78 0.18 185 / 0.25)", animation: "hudRotateSlow 40s linear infinite" }} />
+                <div className="absolute rounded-full" style={{ inset: "4px", border: "1px solid oklch(0.78 0.18 185 / 0.35)", animation: "hudRotateReverse 28s linear infinite" }} />
+                <div className="absolute overflow-hidden flex items-center justify-center rounded-full" style={{ inset: "8px", background: "radial-gradient(circle, oklch(0.16 0.08 200 / 0.7) 0%, oklch(0.09 0.03 210 / 0.9) 100%)", border: "1px solid oklch(0.78 0.18 185 / 0.15)" }}>
+                  <img
+                    src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png"
+                    alt="Tussen de Lijnen"
+                    style={{ width: "85%", height: "85%", objectFit: "contain", filter: "drop-shadow(0 0 10px oklch(0.78 0.18 185 / 0.7))" }}
+                  />
+                </div>
+              </div>
+            </div>
+            {/* Badge — hidden on mobile (shown in mobile row above), visible on lg+ */}
             <div
+              className="hidden lg:block"
               style={{
                 opacity: mounted ? 1 : 0,
                 transform: mounted ? "translateY(0)" : "translateY(-16px)",
@@ -260,7 +282,7 @@ export default function HeroSection() {
               transition: "opacity 1.2s ease 0.4s",
             }}
           >
-            <div className="relative" style={{ width: "min(280px, 65vw)", height: "min(280px, 65vw)" }}>
+            <div className="relative" style={{ width: "min(420px, 42vw)", height: "min(420px, 42vw)" }}>
 
               {/* Ambient glow (close, behind logo) */}
               <div
