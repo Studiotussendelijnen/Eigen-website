@@ -40,6 +40,9 @@ const PARTICLES = [
   { id: 18, type: "circle", x: 40, y: 90, size: 14, opacity: 0.12, dur: 19, delay: 2 },
 ];
 
+const LOGO_SRC =
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png?v=2";
+
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
@@ -92,7 +95,8 @@ export default function HeroSection() {
           `,
           backgroundSize: "60px 60px",
           maskImage: "radial-gradient(ellipse 80% 80% at 70% 50%, black 30%, transparent 80%)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 70% 50%, black 30%, transparent 80%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 80% 80% at 70% 50%, black 30%, transparent 80%)",
         }}
       />
 
@@ -172,7 +176,6 @@ export default function HeroSection() {
       {/* ===== Main content ===== */}
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center min-h-screen py-28 md:py-32">
-
           {/* Left: Text content */}
           <div>
             {/* Badge */}
@@ -206,6 +209,7 @@ export default function HeroSection() {
               >
                 NAAR
               </h1>
+
               {/* Flex row: typewriter text + small logo on mobile only */}
               <div className="flex items-center gap-0 md:gap-0 mb-6">
                 <h1
@@ -219,6 +223,7 @@ export default function HeroSection() {
                 >
                   <TypewriterCycler />
                 </h1>
+
                 {/* Small HUD logo on mobile only */}
                 <div
                   className="md:hidden flex-shrink-0"
@@ -235,7 +240,8 @@ export default function HeroSection() {
                       className="absolute rounded-full"
                       style={{
                         inset: "-30%",
-                        background: "radial-gradient(circle, oklch(0.78 0.18 185 / 0.18) 0%, transparent 65%)",
+                        background:
+                          "radial-gradient(circle, oklch(0.78 0.18 185 / 0.18) 0%, transparent 65%)",
                         filter: "blur(20px)",
                         animation: "hudGlow 4s ease-in-out infinite",
                       }}
@@ -266,29 +272,33 @@ export default function HeroSection() {
                         animation: "hudRotateSlow 55s linear infinite reverse",
                       }}
                     />
-                    {/* Logo image */}
+
+                    {/* Logo image (hard masked circle) */}
                     <div
-                      className="absolute overflow-hidden flex items-center justify-center"
+                      className="absolute flex items-center justify-center"
                       style={{
                         inset: "12%",
                         borderRadius: "50%",
-                        background: "radial-gradient(circle, oklch(0.16 0.08 200 / 0.7) 0%, oklch(0.09 0.03 210 / 0.9) 100%)",
+                        background:
+                          "radial-gradient(circle, oklch(0.16 0.08 200 / 0.7) 0%, oklch(0.09 0.03 210 / 0.9) 100%)",
                         border: "2px solid oklch(0.78 0.18 185 / 0.4)",
-                        boxShadow: "inset 0 0 30px oklch(0.78 0.18 185 / 0.2), 0 0 20px oklch(0.78 0.18 185 / 0.3)",
+                        boxShadow:
+                          "inset 0 0 30px oklch(0.78 0.18 185 / 0.2), 0 0 20px oklch(0.78 0.18 185 / 0.3)",
                       }}
                     >
-                      <img
-                        src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png"
-                        alt="Tussen de Lijnen"
-                        style={{
-                          width: "85%",
-                          height: "85%",
-                          objectFit: "contain",
-                          filter: "drop-shadow(0 0 30px oklch(0.78 0.18 185 / 0.7))",
-                          borderRadius: "50%",
-                          border: "1px solid oklch(0.78 0.18 185 / 0.3)",
-                        }}
-                      />
+                      <div className="w-full h-full overflow-hidden" style={{ borderRadius: "50%" }}>
+                        <img
+                          src={LOGO_SRC}
+                          alt="Tussen de Lijnen"
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                            display: "block",
+                            filter: "drop-shadow(0 0 30px oklch(0.78 0.18 185 / 0.7))",
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -338,13 +348,13 @@ export default function HeroSection() {
             }}
           >
             <div className="relative" style={{ width: "min(420px, 44vw)", height: "min(420px, 44vw)" }}>
-
               {/* Ambient glow (close, behind logo) */}
               <div
                 className="absolute rounded-full"
                 style={{
                   inset: "-30px",
-                  background: "radial-gradient(circle, oklch(0.78 0.18 185 / 0.18) 0%, transparent 65%)",
+                  background:
+                    "radial-gradient(circle, oklch(0.78 0.18 185 / 0.18) 0%, transparent 65%)",
                   filter: "blur(20px)",
                   animation: "hudGlow 4s ease-in-out infinite",
                 }}
@@ -400,52 +410,89 @@ export default function HeroSection() {
               />
 
               {/* Targeting frame (corner brackets) — percentage based */}
-              {/* Top-left */}
-              <div className="absolute" style={{ top: "6%", left: "6%", width: "7%", height: "7%", borderTop: "2px solid oklch(0.78 0.18 185 / 0.8)", borderLeft: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
-              {/* Top-right */}
-              <div className="absolute" style={{ top: "6%", right: "6%", width: "7%", height: "7%", borderTop: "2px solid oklch(0.78 0.18 185 / 0.8)", borderRight: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
-              {/* Bottom-left */}
-              <div className="absolute" style={{ bottom: "6%", left: "6%", width: "7%", height: "7%", borderBottom: "2px solid oklch(0.78 0.18 185 / 0.8)", borderLeft: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
-              {/* Bottom-right */}
-              <div className="absolute" style={{ bottom: "6%", right: "6%", width: "7%", height: "7%", borderBottom: "2px solid oklch(0.78 0.18 185 / 0.8)", borderRight: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
-
-              {/* Logo image centered */}
               <div
-                className="absolute overflow-hidden flex items-center justify-center"
+                className="absolute"
+                style={{
+                  top: "6%",
+                  left: "6%",
+                  width: "7%",
+                  height: "7%",
+                  borderTop: "2px solid oklch(0.78 0.18 185 / 0.8)",
+                  borderLeft: "2px solid oklch(0.78 0.18 185 / 0.8)",
+                }}
+              />
+              <div
+                className="absolute"
+                style={{
+                  top: "6%",
+                  right: "6%",
+                  width: "7%",
+                  height: "7%",
+                  borderTop: "2px solid oklch(0.78 0.18 185 / 0.8)",
+                  borderRight: "2px solid oklch(0.78 0.18 185 / 0.8)",
+                }}
+              />
+              <div
+                className="absolute"
+                style={{
+                  bottom: "6%",
+                  left: "6%",
+                  width: "7%",
+                  height: "7%",
+                  borderBottom: "2px solid oklch(0.78 0.18 185 / 0.8)",
+                  borderLeft: "2px solid oklch(0.78 0.18 185 / 0.8)",
+                }}
+              />
+              <div
+                className="absolute"
+                style={{
+                  bottom: "6%",
+                  right: "6%",
+                  width: "7%",
+                  height: "7%",
+                  borderBottom: "2px solid oklch(0.78 0.18 185 / 0.8)",
+                  borderRight: "2px solid oklch(0.78 0.18 185 / 0.8)",
+                }}
+              />
+
+              {/* Logo image centered (hard masked circle) */}
+              <div
+                className="absolute flex items-center justify-center"
                 style={{
                   inset: "12%",
                   borderRadius: "50%",
-                  background: "radial-gradient(circle, oklch(0.16 0.08 200 / 0.7) 0%, oklch(0.09 0.03 210 / 0.9) 100%)",
+                  background:
+                    "radial-gradient(circle, oklch(0.16 0.08 200 / 0.7) 0%, oklch(0.09 0.03 210 / 0.9) 100%)",
                   border: "2px solid oklch(0.78 0.18 185 / 0.4)",
-                  boxShadow: "inset 0 0 30px oklch(0.78 0.18 185 / 0.2), 0 0 20px oklch(0.78 0.18 185 / 0.3)",
+                  boxShadow:
+                    "inset 0 0 30px oklch(0.78 0.18 185 / 0.2), 0 0 20px oklch(0.78 0.18 185 / 0.3)",
                 }}
               >
-                <img
-                  src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png"
-                  alt="Tussen de Lijnen - Creative Design Studio"
-                  style={{
-                    width: "85%",
-                    height: "85%",
-                    objectFit: "contain",
-                    filter: "drop-shadow(0 0 30px oklch(0.78 0.18 185 / 0.7))",
-                    borderRadius: "50%",
-                    border: "1px solid oklch(0.78 0.18 185 / 0.3)",
-                  }}
-                />
+                <div className="w-full h-full overflow-hidden" style={{ borderRadius: "50%" }}>
+                  <img
+                    src={LOGO_SRC}
+                    alt="Tussen de Lijnen - Creative Design Studio"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      display: "block",
+                      filter: "drop-shadow(0 0 30px oklch(0.78 0.18 185 / 0.7))",
+                    }}
+                  />
+                </div>
               </div>
 
               {/* Scanning line */}
-              <div
-                className="absolute rounded-full overflow-hidden pointer-events-none"
-                style={{ inset: "56px" }}
-              >
+              <div className="absolute rounded-full overflow-hidden pointer-events-none" style={{ inset: "56px" }}>
                 <div
                   style={{
                     position: "absolute",
                     left: 0,
                     right: 0,
                     height: "1px",
-                    background: "linear-gradient(90deg, transparent, oklch(0.78 0.18 185 / 0.6), transparent)",
+                    background:
+                      "linear-gradient(90deg, transparent, oklch(0.78 0.18 185 / 0.6), transparent)",
                     animation: "hudScan 3s ease-in-out infinite",
                   }}
                 />
