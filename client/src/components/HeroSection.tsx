@@ -181,7 +181,7 @@ export default function HeroSection() {
                 transition: "opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s",
               }}
             >
-              <span className="tag-badge mb-6 inline-block">Creative Studio 🚀</span>
+              <span className="tag-badge mb-6 inline-block">Creative Studio </span>
             </div>
 
             {/* Heading */}
