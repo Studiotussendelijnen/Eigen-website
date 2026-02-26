@@ -181,7 +181,7 @@ export default function HeroSection() {
                 transition: "opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s",
               }}
             >
-              <span className="tag-badge mb-6 inline-block">Creative Design Studio</span>
+              <span className="tag-badge mb-6 inline-block">Creative Studio 🚀</span>
             </div>
 
             {/* Heading */}
@@ -264,7 +264,7 @@ export default function HeroSection() {
                         animation: "hudRotateSlow 55s linear infinite reverse",
                       }}
                     />
-                    {/* Logo image - Gecorrigeerd voor mobiel */}
+                    {/* Logo image - MAGISCHE FIX (mix-blend-mode) */}
                     <div
                       className="absolute flex items-center justify-center"
                       style={{ inset: "10%" }}
@@ -275,8 +275,8 @@ export default function HeroSection() {
                         style={{
                           width: "100%",
                           height: "100%",
-                          objectFit: "cover",
-                          borderRadius: "50%",
+                          objectFit: "contain",
+                          mixBlendMode: "screen",
                           filter: "drop-shadow(0 0 20px oklch(0.78 0.18 185 / 0.7))",
                         }}
                       />
@@ -400,7 +400,7 @@ export default function HeroSection() {
               {/* Bottom-right */}
               <div className="absolute" style={{ bottom: "6%", right: "6%", width: "7%", height: "7%", borderBottom: "2px solid oklch(0.78 0.18 185 / 0.8)", borderRight: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
 
-              {/* Logo image centered - Gecorrigeerd voor desktop */}
+              {/* Logo image centered - MAGISCHE FIX (mix-blend-mode) */}
               <div
                 className="absolute flex items-center justify-center"
                 style={{ inset: "10%" }}
@@ -411,8 +411,8 @@ export default function HeroSection() {
                   style={{
                     width: "100%",
                     height: "100%",
-                    objectFit: "cover",
-                    borderRadius: "50%",
+                    objectFit: "contain",
+                    mixBlendMode: "screen",
                     filter: "drop-shadow(0 0 30px oklch(0.78 0.18 185 / 0.7))",
                   }}
                 />
