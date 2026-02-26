@@ -28,61 +28,39 @@ export default function AboutSection() {
           observer.disconnect();
         }
       },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+      { threshold: 0.15 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  // Counter animation using requestAnimationFrame
+  // Counter animation
   useEffect(() => {
-    if (!visible) {
-      setCount(0);
-      setPassie(0);
-      return;
-    }
+    if (!visible) return;
 
-    // Reset to 0 before starting
-    setCount(0);
-    setPassie(0);
+    // Animate count to 2
+    let frame1 = 0;
+    const interval1 = setInterval(() => {
+      frame1++;
+      const progress = Math.min(frame1 / 30, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * 2));
+      if (progress >= 1) clearInterval(interval1);
+    }, 40);
 
-    let animationFrameId1: number;
-    let animationFrameId2: number;
-    let timeoutId: NodeJS.Timeout;
-
-    // Small delay to ensure state is reset
-    timeoutId = setTimeout(() => {
-      // Animate count to 2
-      const startTime1 = Date.now();
-      const animateCount = () => {
-        const elapsed = Date.now() - startTime1;
-        const progress = Math.min(elapsed / 1200, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        setCount(Math.round(eased * 2));
-        if (progress < 1) {
-          animationFrameId1 = requestAnimationFrame(animateCount);
-        }
-      };
-      animationFrameId1 = requestAnimationFrame(animateCount);
-
-      // Animate passie to 100
-      const startTime2 = Date.now();
-      const animatePassie = () => {
-        const elapsed = Date.now() - startTime2;
-        const progress = Math.min(elapsed / 2000, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        setPassie(Math.round(eased * 100));
-        if (progress < 1) {
-          animationFrameId2 = requestAnimationFrame(animatePassie);
-        }
-      };
-      animationFrameId2 = requestAnimationFrame(animatePassie);
-    }, 50);
+    // Animate passie to 100
+    let frame2 = 0;
+    const interval2 = setInterval(() => {
+      frame2++;
+      const progress = Math.min(frame2 / 50, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setPassie(Math.round(eased * 100));
+      if (progress >= 1) clearInterval(interval2);
+    }, 40);
 
     return () => {
-      clearTimeout(timeoutId);
-      cancelAnimationFrame(animationFrameId1);
-      cancelAnimationFrame(animationFrameId2);
+      clearInterval(interval1);
+      clearInterval(interval2);
     };
   }, [visible]);
 
