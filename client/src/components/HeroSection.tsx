@@ -273,7 +273,8 @@ export default function HeroSection() {
                         inset: "12%",
                         borderRadius: "50%",
                         background: "radial-gradient(circle, oklch(0.16 0.08 200 / 0.7) 0%, oklch(0.09 0.03 210 / 0.9) 100%)",
-                        border: "1px solid oklch(0.78 0.18 185 / 0.15)",
+                        border: "2px solid oklch(0.78 0.18 185 / 0.4)",
+                        boxShadow: "inset 0 0 30px oklch(0.78 0.18 185 / 0.2), 0 0 20px oklch(0.78 0.18 185 / 0.3)",
                       }}
                     >
                       <img
@@ -284,6 +285,8 @@ export default function HeroSection() {
                           height: "85%",
                           objectFit: "contain",
                           filter: "drop-shadow(0 0 30px oklch(0.78 0.18 185 / 0.7))",
+                          borderRadius: "50%",
+                          border: "1px solid oklch(0.78 0.18 185 / 0.3)",
                         }}
                       />
                     </div>
@@ -413,7 +416,8 @@ export default function HeroSection() {
                   inset: "12%",
                   borderRadius: "50%",
                   background: "radial-gradient(circle, oklch(0.16 0.08 200 / 0.7) 0%, oklch(0.09 0.03 210 / 0.9) 100%)",
-                  border: "1px solid oklch(0.78 0.18 185 / 0.15)",
+                  border: "2px solid oklch(0.78 0.18 185 / 0.4)",
+                  boxShadow: "inset 0 0 30px oklch(0.78 0.18 185 / 0.2), 0 0 20px oklch(0.78 0.18 185 / 0.3)",
                 }}
               >
                 <img
@@ -424,6 +428,8 @@ export default function HeroSection() {
                     height: "85%",
                     objectFit: "contain",
                     filter: "drop-shadow(0 0 30px oklch(0.78 0.18 185 / 0.7))",
+                    borderRadius: "50%",
+                    border: "1px solid oklch(0.78 0.18 185 / 0.3)",
                   }}
                 />
               </div>
