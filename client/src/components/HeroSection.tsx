@@ -1,5 +1,5 @@
 /**
- * HeroSection - Dark cyberpunk creative studio
+ // HeroSection - Dark cyberpunk creative studio (redeploy)
  * Full layered background:
  *   Layer 1: Near-black base (#05090c) with radial gradient from right
  *   Layer 2: Subtle tech-grid (SVG, 8% opacity, slow drift animation)
