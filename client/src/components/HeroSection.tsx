@@ -400,20 +400,26 @@ export default function HeroSection() {
               {/* Bottom-right */}
               <div className="absolute" style={{ bottom: "6%", right: "6%", width: "7%", height: "7%", borderBottom: "2px solid oklch(0.78 0.18 185 / 0.8)", borderRight: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
 
-              {/* Logo image centered - MAGISCHE FIX (mix-blend-mode) */}
+              {/* Logo image centered with circular border */}
               <div
-                className="absolute flex items-center justify-center"
-                style={{ inset: "10%" }}
+                className="absolute overflow-hidden flex items-center justify-center rounded-full"
+                style={{
+                  inset: "12%",
+                  background: "radial-gradient(circle, oklch(0.16 0.08 200 / 0.7) 0%, oklch(0.09 0.03 210 / 0.9) 100%)",
+                  border: "2px solid oklch(0.78 0.18 185 / 0.4)",
+                  boxShadow: "inset 0 0 30px oklch(0.78 0.18 185 / 0.2), 0 0 20px oklch(0.78 0.18 185 / 0.3)",
+                }}
               >
                 <img
                   src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png"
                   alt="Tussen de Lijnen - Creative Design Studio"
                   style={{
-                    width: "100%",
-                    height: "100%",
+                    width: "85%",
+                    height: "85%",
                     objectFit: "contain",
-                    mixBlendMode: "screen",
                     filter: "drop-shadow(0 0 30px oklch(0.78 0.18 185 / 0.7))",
+                    borderRadius: "50%",
+                    border: "1px solid oklch(0.78 0.18 185 / 0.3)",
                   }}
                 />
               </div>
