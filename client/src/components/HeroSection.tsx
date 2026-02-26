@@ -408,12 +408,14 @@ export default function HeroSection() {
 
               {/* Logo image centered with circular border */}
               <div
-                className="absolute overflow-hidden flex items-center justify-center rounded-full"
+                className="absolute overflow-hidden flex items-center justify-center"
                 style={{
                   inset: "12%",
+                  borderRadius: "50%",
                   background: "radial-gradient(circle, oklch(0.16 0.08 200 / 0.7) 0%, oklch(0.09 0.03 210 / 0.9) 100%)",
                   border: "2px solid oklch(0.78 0.18 185 / 0.4)",
                   boxShadow: "inset 0 0 30px oklch(0.78 0.18 185 / 0.2), 0 0 20px oklch(0.78 0.18 185 / 0.3)",
+                  aspectRatio: "1 / 1",
                 }}
               >
                 <img
