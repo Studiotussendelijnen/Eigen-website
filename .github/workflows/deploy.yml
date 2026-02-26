@@ -20,16 +20,14 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 10
+          version: 10.4.1
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Bouw alleen de website (Vite), niet de server (esbuild)
       - name: Build website
         run: pnpm run build:site
 
-      # Controle: je moet hier dist/index.html en dist/assets zien
       - name: Debug dist output
         run: |
           echo "== dist =="
