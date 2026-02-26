@@ -1,4 +1,4 @@
-name: Deploy to Hoasted
+name: Deploy website to Hoasted (FTP)
 
 on:
   push:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Setup Node
@@ -17,30 +17,20 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10.4.1
-
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        working-directory: client
+        run: npm install --legacy-peer-deps
 
-      - name: Build website
-        run: pnpm run build:site
+      - name: Build
+        working-directory: client
+        run: npm run build
 
-      - name: Debug dist output
-        run: |
-          echo "== dist =="
-          ls -la dist || true
-          echo "== dist/assets =="
-          ls -la dist/assets || true
-
-      - name: Deploy via FTP
+      - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: public_html/
           local-dir: dist/public/
+          server-dir: /public_html/
           dangerous-clean-slate: true
