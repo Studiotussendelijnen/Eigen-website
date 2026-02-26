@@ -117,7 +117,7 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link href="/contact" className="btn-primary-cyan text-sm self-start mt-2">
+            <Link href="/contact" className="btn-primary-cyan text-sm self-start mt-2 inline-block" onClick={() => setMobileOpen(false)}>
               Start project
             </Link>
           </div>
