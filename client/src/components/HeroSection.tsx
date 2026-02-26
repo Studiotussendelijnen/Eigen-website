@@ -1,16 +1,14 @@
 /**
  * HeroSection - Dark cyberpunk creative studio
  * Full layered background:
- *   Layer 1: Near-black base (#05090c) with radial gradient from right
- *   Layer 2: Subtle tech-grid (SVG, 8% opacity, slow drift animation)
- *   Layer 3: Ambient cyan glow behind logo (pulsing)
+ * Layer 1: Near-black base (#05090c) with radial gradient from right
+ * Layer 2: Subtle tech-grid (SVG, 8% opacity, slow drift animation)
+ * Layer 3: Ambient cyan glow behind logo (pulsing)
  * HUD: Multiple concentric rings with slow rotation, corner brackets, targeting frame
  * Floating particles: dots, squares, outlines with slow random motion
  * Mouse parallax: particles shift subtly with mouse position
  * Typewriter cycler: IMPACT → RESULTAAT → CONVERSIE
  * Small logo inline with typewriter text on mobile only
- * CDN assets:
- *   Logo: https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png
  */
 
 import { ArrowRight } from "lucide-react";
@@ -161,7 +159,7 @@ export default function HeroSection() {
                     borderRadius: "50%",
                     border: "1px solid oklch(0.78 0.18 185 / 0.5)",
                     opacity: p.opacity,
-                  }}
+                    }}
                 />
               )}
             </div>
@@ -266,27 +264,20 @@ export default function HeroSection() {
                         animation: "hudRotateSlow 55s linear infinite reverse",
                       }}
                     />
-                    {/* Logo image */}
+                    {/* Logo image - Gecorrigeerd voor mobiel */}
                     <div
-                      className="absolute overflow-hidden flex items-center justify-center"
-                      style={{
-                        inset: "12%",
-                        borderRadius: "50%",
-                        background: "radial-gradient(circle, oklch(0.16 0.08 200 / 0.7) 0%, oklch(0.09 0.03 210 / 0.9) 100%)",
-                        border: "2px solid oklch(0.78 0.18 185 / 0.4)",
-                        boxShadow: "inset 0 0 30px oklch(0.78 0.18 185 / 0.2), 0 0 20px oklch(0.78 0.18 185 / 0.3)",
-                      }}
+                      className="absolute flex items-center justify-center"
+                      style={{ inset: "10%" }}
                     >
                       <img
                         src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png"
                         alt="Tussen de Lijnen"
                         style={{
-                          width: "85%",
-                          height: "85%",
-                          objectFit: "contain",
-                          filter: "drop-shadow(0 0 30px oklch(0.78 0.18 185 / 0.7))",
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
                           borderRadius: "50%",
-                          border: "1px solid oklch(0.78 0.18 185 / 0.3)",
+                          filter: "drop-shadow(0 0 20px oklch(0.78 0.18 185 / 0.7))",
                         }}
                       />
                     </div>
@@ -409,27 +400,20 @@ export default function HeroSection() {
               {/* Bottom-right */}
               <div className="absolute" style={{ bottom: "6%", right: "6%", width: "7%", height: "7%", borderBottom: "2px solid oklch(0.78 0.18 185 / 0.8)", borderRight: "2px solid oklch(0.78 0.18 185 / 0.8)" }} />
 
-              {/* Logo image centered */}
+              {/* Logo image centered - Gecorrigeerd voor desktop */}
               <div
-                className="absolute overflow-hidden flex items-center justify-center"
-                style={{
-                  inset: "12%",
-                  borderRadius: "50%",
-                  background: "radial-gradient(circle, oklch(0.16 0.08 200 / 0.7) 0%, oklch(0.09 0.03 210 / 0.9) 100%)",
-                  border: "2px solid oklch(0.78 0.18 185 / 0.4)",
-                  boxShadow: "inset 0 0 30px oklch(0.78 0.18 185 / 0.2), 0 0 20px oklch(0.78 0.18 185 / 0.3)",
-                }}
+                className="absolute flex items-center justify-center"
+                style={{ inset: "10%" }}
               >
                 <img
                   src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/beOddLdPeurbEUar.png"
                   alt="Tussen de Lijnen - Creative Design Studio"
                   style={{
-                    width: "85%",
-                    height: "85%",
-                    objectFit: "contain",
-                    filter: "drop-shadow(0 0 30px oklch(0.78 0.18 185 / 0.7))",
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
                     borderRadius: "50%",
-                    border: "1px solid oklch(0.78 0.18 185 / 0.3)",
+                    filter: "drop-shadow(0 0 30px oklch(0.78 0.18 185 / 0.7))",
                   }}
                 />
               </div>
