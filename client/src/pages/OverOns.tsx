@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import AnimateIn from "@/components/AnimateIn";
 import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
+import SEO from "@/components/SEO";
 
 const BO_PHOTO = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/sipECXzYhiXBHkDL.jpg";
 const RENE_PHOTO = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663380554988/hkyIUewDbXDKWFPV.jpg";
@@ -32,7 +33,13 @@ const values = [
 
 export default function OverOns() {
   return (
-    <div className="min-h-screen" style={{ background: "oklch(0.09 0.02 240)" }}>
+    <>
+      <SEO
+        title="Over ons | Tussen de Lijnen"
+        description="Leer ons kennen. Wij zijn Bo en René, twee creatieve denkers met passie voor design dat werkt."
+        ogUrl="https://studiolijn.nl/over-ons"
+      />
+      <div className="min-h-screen" style={{ background: "oklch(0.09 0.02 240)" }}>
       <Navbar />
 
       {/* Hero */}
@@ -285,5 +292,6 @@ export default function OverOns() {
 
       <Footer />
     </div>
+    </>
   );
 }

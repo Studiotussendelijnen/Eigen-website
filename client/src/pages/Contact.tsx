@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import AnimateIn from "@/components/AnimateIn";
 import { Mail, Clock, Send, MapPin } from "lucide-react";
 import { toast } from "sonner";
+import SEO from "@/components/SEO";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", service: "", message: "" });
@@ -66,7 +67,13 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: "oklch(0.09 0.02 240)" }}>
+    <>
+      <SEO
+        title="Contact | Tussen de Lijnen"
+        description="Neem contact op met ons. We helpen je graag met je volgende project. Stuur een bericht of bel ons."
+        ogUrl="https://studiolijn.nl/contact"
+      />
+      <div className="min-h-screen" style={{ background: "oklch(0.09 0.02 240)" }}>
       <Navbar />
 
       <section className="relative pt-32 pb-24 overflow-hidden">
@@ -284,5 +291,6 @@ export default function Contact() {
 
       <Footer />
     </div>
+    </>
   );
 }

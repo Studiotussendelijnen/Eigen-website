@@ -13,10 +13,17 @@ import ProcessSection from "@/components/ProcessSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import SectionDivider from "@/components/SectionDivider";
+import SEO from "@/components/SEO";
 
 export default function Home() {
   return (
-    <div className="min-h-screen" style={{ background: "oklch(0.09 0.02 240)" }}>
+    <>
+      <SEO
+        title="Tussen de Lijnen | Creative Design Studio"
+        description="Van idee naar impact. Wij helpen ondernemers groeien met branding, grafisch ontwerp en digitale oplossingen die écht werken."
+        ogUrl="https://studiolijn.nl"
+      />
+      <div className="min-h-screen" style={{ background: "oklch(0.09 0.02 240)" }}>
       <Navbar />
       <HeroSection />
       <SectionDivider />
@@ -29,5 +36,6 @@ export default function Home() {
       <CTASection />
       <Footer />
     </div>
+    </>
   );
 }

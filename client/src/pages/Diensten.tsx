@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimateIn from "@/components/AnimateIn";
 import { Link } from "wouter";
+import SEO from "@/components/SEO";
 
 const services = [
   {
@@ -59,8 +60,14 @@ const services = [
 
 export default function Diensten() {
   return (
-    <div className="min-h-screen" style={{ background: "oklch(0.09 0.02 240)" }}>
-      <Navbar />
+    <>
+      <SEO
+        title="Diensten | Tussen de Lijnen"
+        description="Branding, grafisch ontwerp en digitale oplossingen. Wij helpen bedrijven groeien met professionele creatieve diensten."
+        ogUrl="https://studiolijn.nl/diensten"
+      />
+      <div className="min-h-screen" style={{ background: "oklch(0.09 0.02 240)" }}>
+        <Navbar />
 
       {/* Page hero */}
       <section className="relative pt-32 pb-16 overflow-hidden">
@@ -194,5 +201,6 @@ export default function Diensten() {
 
       <Footer />
     </div>
+    </>
   );
 }

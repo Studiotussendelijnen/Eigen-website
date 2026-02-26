@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import AnimateIn from "@/components/AnimateIn";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { Link } from "wouter";
+import SEO from "@/components/SEO";
 
 const projects = [
   {
@@ -31,7 +32,13 @@ const projects = [
 
 export default function Portfolio() {
   return (
-    <div className="min-h-screen" style={{ background: "oklch(0.09 0.02 240)" }}>
+    <>
+      <SEO
+        title="Portfolio | Tussen de Lijnen"
+        description="Bekijk onze recente projecten: websites, branding en digitale oplossingen voor ondernemers en bedrijven."
+        ogUrl="https://studiolijn.nl/portfolio"
+      />
+      <div className="min-h-screen" style={{ background: "oklch(0.09 0.02 240)" }}>
       <Navbar />
 
       {/* Hero */}
@@ -281,5 +288,6 @@ export default function Portfolio() {
 
       <Footer />
     </div>
+    </>
   );
 }
